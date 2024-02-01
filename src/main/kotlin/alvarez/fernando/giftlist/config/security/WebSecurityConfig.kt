@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
@@ -16,13 +17,15 @@ class WebSecurityConfig(
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http
             .authorizeHttpRequests {
-                it.requestMatchers(Urls.Admin.LOGIN).anonymous()
+                it.requestMatchers(Urls.Admin.LOGIN, Urls.Admin.FIRST_ACCESS).permitAll()
                 it.requestMatchers(Urls.Admin.ANT_MATCHER).hasAuthority(Roles.ROLE_ADMIN.name)
                 it.requestMatchers(Urls.Guests.LOGIN).anonymous()
                 it.requestMatchers(Urls.Guests.ANT_MATCHER).hasAuthority(Roles.ROLE_GUEST.name)
             }
             .formLogin {
-                it.loginPage(Urls.Admin.LOGIN).loginProcessingUrl(Urls.Admin.LOGIN)
+                it.loginPage(Urls.Admin.LOGIN)
+                    .loginProcessingUrl(Urls.Admin.LOGIN)
+                    .defaultSuccessUrl(Urls.Admin.USERS)
             }
             .addFilterBefore(this.guestAuthorizationFilter(), UsernamePasswordAuthenticationFilter::class.java)
             .build()
@@ -34,4 +37,7 @@ class WebSecurityConfig(
         guestAuthorizationFilter.setAuthenticationManager(this.configuration.authenticationManager)
         return guestAuthorizationFilter
     }
+
+    @Bean
+    fun passwordEncoder() = Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8()
 }
