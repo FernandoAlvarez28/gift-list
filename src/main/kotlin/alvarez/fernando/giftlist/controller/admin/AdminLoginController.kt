@@ -2,8 +2,8 @@ package alvarez.fernando.giftlist.controller.admin
 
 import alvarez.fernando.giftlist.controller.Urls
 import alvarez.fernando.giftlist.controller.Views
-import alvarez.fernando.giftlist.domain.user.service.AdminUserService
-import alvarez.fernando.giftlist.dto.FirstAdminUserRequestDto
+import alvarez.fernando.giftlist.domain.user.service.UserService
+import alvarez.fernando.giftlist.dto.FirstUserRequestDto
 import alvarez.fernando.giftlist.util.RedirectView
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.userdetails.UserDetails
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView
 
 @Controller
 class AdminLoginController(
-    private val adminUserService: AdminUserService,
+    private val userService: UserService,
 ) {
     @GetMapping(Urls.Admin.LOGIN)
     fun loginPage(
@@ -22,7 +22,7 @@ class AdminLoginController(
     ): ModelAndView {
         if (userDetails != null) {
             return RedirectView(Urls.Admin.USERS)
-        } else if (!this.adminUserService.existsAny()) {
+        } else if (!this.userService.existsAny()) {
             return RedirectView(Urls.Admin.FIRST_ACCESS)
         }
 
@@ -33,7 +33,7 @@ class AdminLoginController(
     fun firstUserRegistrationPage(@AuthenticationPrincipal userDetails: UserDetails?): ModelAndView {
         if (userDetails != null) {
             return RedirectView(Urls.Admin.USERS)
-        } else if (this.adminUserService.existsAny()) {
+        } else if (this.userService.existsAny()) {
             return RedirectView(Urls.Admin.LOGIN)
         }
 
@@ -43,12 +43,12 @@ class AdminLoginController(
     @PostMapping(Urls.Admin.FIRST_ACCESS)
     fun firstUserRegistrationSubmit(
         @AuthenticationPrincipal userDetails: UserDetails?,
-        requestDto: FirstAdminUserRequestDto,
+        requestDto: FirstUserRequestDto,
     ): ModelAndView {
         if (userDetails != null) {
             return RedirectView(Urls.Admin.USERS)
-        } else if (!this.adminUserService.existsAny()) {
-            this.adminUserService.create(newAdminUserRequest = requestDto)
+        } else if (!this.userService.existsAny()) {
+            this.userService.create(newUserRequest = requestDto)
         }
 
         return RedirectView(Urls.Admin.LOGIN)

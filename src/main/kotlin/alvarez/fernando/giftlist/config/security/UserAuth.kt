@@ -1,17 +1,17 @@
 package alvarez.fernando.giftlist.config.security
 
-import alvarez.fernando.giftlist.domain.user.model.AdminUser
+import alvarez.fernando.giftlist.domain.user.model.User
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.Collections
 
-class AdminUserAuth(
+class UserAuth(
     val email: String,
     private val encryptedPassword: String,
 ) : UserDetails {
-    constructor(adminUser: AdminUser) : this(
-        email = adminUser.email,
-        encryptedPassword = adminUser.encryptedPassword,
+    constructor(user: User) : this(
+        email = user.email,
+        encryptedPassword = user.encryptedPassword,
     )
 
     override fun getAuthorities(): MutableSet<SimpleGrantedAuthority> =
@@ -33,7 +33,7 @@ class AdminUserAuth(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as AdminUserAuth
+        other as UserAuth
 
         return email == other.email
     }

@@ -1,6 +1,6 @@
 package alvarez.fernando.giftlist.domain.user.dto
 
-interface NewAdminUserRequest {
+interface NewUserRequest {
     val name: String
     val email: String
     val unencryptedPassword: String

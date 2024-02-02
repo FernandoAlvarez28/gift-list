@@ -1,18 +1,18 @@
 package alvarez.fernando.giftlist.config.security
 
-import alvarez.fernando.giftlist.domain.user.service.AdminUserService
+import alvarez.fernando.giftlist.domain.user.service.UserService
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 
 @Service
-class AdminUserDetailService(
-    private val adminUserService: AdminUserService,
+class UserDetailService(
+    private val userService: UserService,
 ) : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails {
-        val adminUser = this.adminUserService.findByEmail(email = username)
+        val adminUser = this.userService.findByEmail(email = username)
 
-        return AdminUserAuth(adminUser = adminUser.orElseThrow { UsernameNotFoundException("") })
+        return UserAuth(user = adminUser.orElseThrow { UsernameNotFoundException("") })
     }
 }
