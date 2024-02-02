@@ -17,6 +17,7 @@ class WebSecurityConfig(
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         return http
             .authorizeHttpRequests {
+                it.requestMatchers(*Urls.Resources.PUBLIC).permitAll()
                 it.requestMatchers(Urls.Admin.LOGIN, Urls.Admin.FIRST_ACCESS).permitAll()
                 it.requestMatchers(Urls.Admin.ANT_MATCHER).hasAuthority(Roles.ROLE_ADMIN.name)
                 it.requestMatchers(Urls.Guests.LOGIN).anonymous()

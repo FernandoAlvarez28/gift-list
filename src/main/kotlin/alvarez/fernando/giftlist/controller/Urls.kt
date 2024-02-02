@@ -19,4 +19,15 @@ class Urls {
             const val GIFTS = "/guest/gifts"
         }
     }
+
+    class Resources {
+        companion object {
+            const val FAVICON = "/favicon.ico"
+
+            val PUBLIC =
+                arrayOf(
+                    FAVICON,
+                )
+        }
+    }
 }
