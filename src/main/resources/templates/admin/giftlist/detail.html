@@ -1,83 +1,130 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gift Lists</title>
+<th:block xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/admin/main.html}">
 
-    <!--/* Temporary page made by ChatGPT; TODO replace with a unique page */-->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 20px;
-        }
+    <th:block layout:fragment="content">
+        <div class="col-xl-9 col-lg-12 mb-4 mx-auto">
+            <h1 class="h3 mb-2 text-gray-800">
+                <th:block th:text="${giftList.name}">Gift List name</th:block>
 
-        h1 {
-            color: #333;
-        }
+                <th:block th:if="${giftList.active}">
+                    <i class="fa-solid fa-xs fa-circle-check" th:title="#{admin.gift-lists.detail.active.true}"></i>
+                </th:block>
+                <th:block th:unless="${giftList.active}">
+                    <i class="fa-solid fa-xs fa-circle-xmark" th:title="#{admin.gift-lists.detail.active.false}"></i>
+                </th:block>
+            </h1>
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+            <div class="row">
+                <div class="col-xl-9 col-lg-12 mb-4 mx-auto">
+                    <div class="card shadow">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary" th:text="#{admin.gift-lists.detail.gifts}">
+                                Gifts
+                            </h6>
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="giftsActionsDropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                     aria-labelledby="giftsActionsDropdownMenuLink">
+                                    <div class="dropdown-header" th:text="#{admin.gift-lists.detail.gifts.action}">
+                                        Actions
+                                    </div>
+                                    <a class="dropdown-item" href="#"
+                                       th:href="@{/admin/my-gift-lists/{giftListId}/add-gift (giftListId = ${giftList.giftListId})}"
+                                       th:text="#{admin.gift-lists.detail.gifts.action.add}">
+                                        Add gift
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-        th {
-            background-color: #f2f2f2;
-        }
+                        <div class="card-body">
+                            <th:block th:if="${#lists.isEmpty(gifts)}">
+                                <th:block th:insert="~{layout/admin/empty-space :: empty-space(
+                                        emptySpaceTitle = #{admin.gift-lists.detail.gifts.empty-space.title},
+                                        emptySpaceDescription = #{admin.gift-lists.detail.gifts.empty-space.description},
+                                        emptySpaceActionText = #{admin.gift-lists.detail.gifts.empty-space.action-text},
+                                        emptySpaceActionUri = @{/admin/my-gift-lists/{giftListId}/add-gift (giftListId = ${giftList.giftListId})},
+                                )}"/>
+                            </th:block>
 
-        a {
-            background-color: #4CAF50;
-            color: white;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+                            <th:block th:unless="${#lists.isEmpty(gifts)}">
+                                <div class="row">
+                                    <th:block th:each="gift : ${gifts}">
+                                        <div class="col-xl-4 col-lg-6 col-md-12">
+                                            <div class="card shadow">
+                                                <div class="card-body">
+                                                    <!--/* TODO implement gifts */-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
 
-        .empty-space {
-            margin-top: 20px;
-            color: #555;
-        }
-    </style>
-</head>
-<body>
+                <div class="col-xl-3 col-lg-12 mb-4 mx-auto">
+                    <div class="card shadow">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary" th:text="#{admin.gift-lists.detail.gifts}">
+                                Guests
+                            </h6>
 
-<h1 th:text="${giftList.name}">Gift List</h1>
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="guestsActionsDropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                     aria-labelledby="guestsActionsDropdownMenuLink">
+                                    <div class="dropdown-header" th:text="#{admin.gift-lists.detail.guests.action}">
+                                        Actions
+                                    </div>
+                                    <a class="dropdown-item" href="#"
+                                       th:href="@{/admin/my-gift-lists/{giftListId}/add-guest (giftListId = ${giftList.giftListId})}"
+                                       th:text="#{admin.gift-lists.detail.guests.action.add}">
+                                        Add guest
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-<th:block th:if="${#lists.isEmpty(gifts)}">
-    <div class="empty-space" id="emptySpaceMessage">
-        <p>No gifts yet.</p>
-        <a th:href="@{/admin/my-gift-lists/{giftListId}/add-gift (giftListId = ${giftList.giftListId})}">Add a gift</a>
-    </div>
+                        <div class="card-body">
+                            <th:block th:if="${#lists.isEmpty(guests)}">
+                                <th:block th:insert="~{layout/admin/empty-space :: empty-space(
+                                        emptySpaceTitle = #{admin.gift-lists.detail.guests.empty-space.title},
+                                        emptySpaceDescription = #{admin.gift-lists.detail.guests.empty-space.description},
+                                        emptySpaceActionText = #{admin.gift-lists.detail.guests.empty-space.action-text},
+                                        emptySpaceActionUri = @{/admin/my-gift-lists/{giftListId}/add-guest (giftListId = ${giftList.giftListId})},
+                                )}"/>
+                            </th:block>
+
+                            <th:block th:unless="${#lists.isEmpty(guests)}">
+                                <div class="row">
+                                    <th:block th:each="guest : ${guests}">
+                                        <div class="col-xl-4 col-lg-6 col-md-12">
+                                            <div class="card shadow">
+                                                <div class="card-body">
+                                                    <!--/* TODO implement guests */-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </th:block>
 </th:block>
-
-<th:block th:unless="${#lists.isEmpty(gifts)}">
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <th:block th:each="gift : ${gifts}">
-            <tr>
-                <td th:text="${gift.name}">Name</td>
-            </tr>
-        </th:block>
-        </tbody>
-    </table>
-
-    <a th:href="@{/admin/my-gift-lists/{giftListId}/add-gift (giftListId = ${giftList.giftListId})}">Add gift</a>
-</th:block>
-
-</body>
-</html>
