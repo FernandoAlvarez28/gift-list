@@ -50,10 +50,12 @@ class Urls {
     class Resources {
         companion object {
             const val FAVICON = "/favicon.ico"
+            const val RESOURCES_ANT_MATCHER = "/resources/**"
 
             val PUBLIC =
                 arrayOf(
                     FAVICON,
+                    RESOURCES_ANT_MATCHER,
                 )
         }
     }

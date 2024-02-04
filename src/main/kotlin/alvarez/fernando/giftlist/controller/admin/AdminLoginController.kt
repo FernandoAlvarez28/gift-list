@@ -26,7 +26,7 @@ class AdminLoginController(
             return RedirectView(Urls.Admin.FIRST_ACCESS)
         }
 
-        return ModelAndView(Views.Admin.LOGIN).addObject("postUrl", Urls.Admin.LOGIN)
+        return ModelAndView(Views.Admin.LOGIN).addObject("loginPostUri", Urls.Admin.LOGIN)
     }
 
     @GetMapping(Urls.Admin.FIRST_ACCESS)
@@ -37,7 +37,7 @@ class AdminLoginController(
             return RedirectView(Urls.Admin.LOGIN)
         }
 
-        return ModelAndView(Views.Admin.FIRST_ACCESS).addObject("postUrl", Urls.Admin.FIRST_ACCESS)
+        return ModelAndView(Views.Admin.FIRST_ACCESS).addObject("firstAccessPostUri", Urls.Admin.FIRST_ACCESS)
     }
 
     @PostMapping(Urls.Admin.FIRST_ACCESS)
