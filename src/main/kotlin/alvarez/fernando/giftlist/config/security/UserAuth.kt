@@ -1,15 +1,21 @@
 package alvarez.fernando.giftlist.config.security
 
+import alvarez.fernando.giftlist.domain.user.dto.UserReference
 import alvarez.fernando.giftlist.domain.user.model.User
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.Collections
+import java.util.UUID
 
 class UserAuth(
+    override val userId: UUID,
+    override val name: String,
     val email: String,
     private val encryptedPassword: String,
-) : UserDetails {
+) : UserDetails, UserReference {
     constructor(user: User) : this(
+        userId = user.userId,
+        name = user.name,
         email = user.email,
         encryptedPassword = user.encryptedPassword,
     )
