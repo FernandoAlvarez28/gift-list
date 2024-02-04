@@ -7,12 +7,15 @@ class Views {
             const val FIRST_ACCESS = "admin/first-access"
 
             const val USERS_LIST = "admin/users/list"
+
+            const val GIFT_LISTS_LIST = "admin/giftlist/list"
+            const val GIFT_LISTS_NEW = "admin/giftlist/new"
+            const val GIFT_LIST_DETAIL = "admin/giftlist/detail"
         }
     }
 
     class Guests {
         companion object {
-            const val GIFTS_LIST = "guests/gifts/list"
         }
     }
 }

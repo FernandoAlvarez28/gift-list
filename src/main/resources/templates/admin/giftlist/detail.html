@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Lists</title>
+
+    <!--/* Temporary page made by ChatGPT; TODO replace with a unique page */-->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .empty-space {
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<h1 th:text="${giftList.name}">Gift List</h1>
+
+<th:block th:if="${#lists.isEmpty(gifts)}">
+    <div class="empty-space" id="emptySpaceMessage">
+        <p>No gifts yet.</p>
+        <a th:href="@{/admin/my-gift-lists/{giftListId}/add-gift (giftListId = ${giftList.giftListId})}">Add a gift</a>
+    </div>
+</th:block>
+
+<th:block th:unless="${#lists.isEmpty(gifts)}">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="gift : ${gifts}">
+            <tr>
+                <td th:text="${gift.name}">Name</td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+    <a th:href="@{/admin/my-gift-lists/{giftListId}/add-gift (giftListId = ${giftList.giftListId})}">Add gift</a>
+</th:block>
+
+</body>
+</html>
