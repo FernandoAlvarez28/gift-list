@@ -5,4 +5,4 @@ CREATE TABLE IF NOT EXISTS gift_list.USER(
     , encrypted_password VARCHAR(255) NOT NULL
 );
 
-CREATE INDEX IF NOT EXISTS gift_list_user_email_index ON gift_list.USER (email);
+CREATE INDEX IF NOT EXISTS user_email_index ON gift_list.USER (email);
