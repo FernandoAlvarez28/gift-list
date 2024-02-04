@@ -20,6 +20,8 @@ class UserAuth(
         encryptedPassword = user.encryptedPassword,
     )
 
+    fun hasRole(role: Roles?): Boolean = role != null && this.authorities.contains(SimpleGrantedAuthority(role.name))
+
     override fun getAuthorities(): MutableSet<SimpleGrantedAuthority> =
         Collections.singleton(SimpleGrantedAuthority(Roles.ROLE_ADMIN.name))
 

@@ -21,7 +21,7 @@ class AdminLoginController(
         @AuthenticationPrincipal userDetails: UserDetails?,
     ): ModelAndView {
         if (userDetails != null) {
-            return RedirectView(Urls.Admin.USERS)
+            return RedirectView(Urls.Admin.DEFAULT_URL)
         } else if (!this.userService.existsAny()) {
             return RedirectView(Urls.Admin.FIRST_ACCESS)
         }
@@ -32,7 +32,7 @@ class AdminLoginController(
     @GetMapping(Urls.Admin.FIRST_ACCESS)
     fun firstUserRegistrationPage(@AuthenticationPrincipal userDetails: UserDetails?): ModelAndView {
         if (userDetails != null) {
-            return RedirectView(Urls.Admin.USERS)
+            return RedirectView(Urls.Admin.DEFAULT_URL)
         } else if (this.userService.existsAny()) {
             return RedirectView(Urls.Admin.LOGIN)
         }
@@ -46,7 +46,7 @@ class AdminLoginController(
         requestDto: FirstUserRequestDto,
     ): ModelAndView {
         if (userDetails != null) {
-            return RedirectView(Urls.Admin.USERS)
+            return RedirectView(Urls.Admin.DEFAULT_URL)
         } else if (!this.userService.existsAny()) {
             this.userService.create(newUserRequest = requestDto)
         }

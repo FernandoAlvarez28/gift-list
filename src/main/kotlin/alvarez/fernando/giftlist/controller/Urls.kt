@@ -1,6 +1,10 @@
 package alvarez.fernando.giftlist.controller
 
 class Urls {
+    companion object {
+        const val ROOT = "/"
+    }
+
     class Admin {
         companion object {
             const val ANT_MATCHER = "/admin/**"
