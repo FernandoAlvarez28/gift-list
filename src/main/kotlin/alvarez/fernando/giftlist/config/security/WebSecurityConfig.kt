@@ -28,6 +28,9 @@ class WebSecurityConfig(
                     .loginProcessingUrl(Urls.Admin.LOGIN)
                     .defaultSuccessUrl(Urls.Admin.DEFAULT_URL)
             }
+            .logout {
+                it.logoutUrl(Urls.Admin.LOGOUT)
+            }
             .addFilterBefore(this.guestAuthorizationFilter(), UsernamePasswordAuthenticationFilter::class.java)
             .build()
     }

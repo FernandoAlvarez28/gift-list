@@ -27,6 +27,7 @@ class Urls {
         companion object {
             const val ANT_MATCHER = "/admin/**"
             const val LOGIN = "/admin/login"
+            const val LOGOUT = "/admin/logout"
             const val FIRST_ACCESS = "/admin/first-access"
 
             const val USERS = "/admin/users"
