@@ -19,7 +19,7 @@ class GiftList(
 ) {
     constructor(giftListRequest: GiftListRequest, user: UserReference) : this(
         giftListId = UUID.randomUUID(),
-        name = giftListRequest.name,
+        name = giftListRequest.name.trim(),
         userId = user.userId,
         createdAt = LocalDateTime.now(),
         active = true,
