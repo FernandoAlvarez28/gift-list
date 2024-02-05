@@ -18,8 +18,8 @@ class User(
 ): UserReference {
     constructor(newUserRequest: NewUserRequest, passwordEncoder: PasswordEncoder): this(
         userId = UUID.randomUUID(),
-        name = newUserRequest.name,
-        email = newUserRequest.email,
+        name = newUserRequest.name.trim(),
+        email = newUserRequest.email.trim(),
         encryptedPassword = passwordEncoder.encode(newUserRequest.unencryptedPassword),
     )
 }
