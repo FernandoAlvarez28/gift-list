@@ -12,7 +12,7 @@ import java.util.UUID
 @Table
 class GiftList(
     @Id val giftListId: UUID,
-    val name: String,
+    var name: String,
     val userId: UUID,
     val createdAt: LocalDateTime,
     var active: Boolean,
