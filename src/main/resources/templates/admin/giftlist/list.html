@@ -51,8 +51,20 @@
                                         <td th:text="${#temporals.format(giftList.createdAt, dateTimeFormat)}">
                                             Created at
                                         </td>
-                                        <td th:text="'X'">Gifts</td> <!--/* TODO implement gifts count */-->
-                                        <td th:text="'X'">Guests</td> <!--/* TODO implement guests count */-->
+                                        <td>
+                                            <th:block th:if="${giftList.giftQuantity == 0}">--</th:block>
+                                            <th:block th:if="${giftList.giftQuantity > 0}"
+                                                      th:text="${giftList.giftQuantity}">
+                                                Gifts
+                                            </th:block>
+                                        </td>
+                                        <td>
+                                            <th:block th:if="${giftList.guestQuantity == 0}">--</th:block>
+                                            <th:block th:if="${giftList.guestQuantity > 0}"
+                                                      th:text="${giftList.guestQuantity}">
+                                                Guests
+                                            </th:block>
+                                        </td>
                                         <td>
                                             <a th:href="@{/admin/my-gift-lists/{giftListId} (giftListId = ${giftList.giftListId})}"
                                                th:text="#{admin.gift-lists.table.body.action.view}">

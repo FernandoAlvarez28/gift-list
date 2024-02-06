@@ -24,4 +24,14 @@ class GiftListService(
     ) = this.giftListRepository.findOneByIdAndUser(giftListId = giftListId, userId = user.userId)
 
     fun findAllByUser(user: UserReference) = this.giftListRepository.findAllByUserId(userId = user.userId)
+
+    fun addGift(giftList: GiftList) {
+        giftList.addGift()
+        this.giftListRepository.save(giftList)
+    }
+
+    fun addGuest(giftList: GiftList) {
+        giftList.addGuest()
+        this.giftListRepository.save(giftList)
+    }
 }

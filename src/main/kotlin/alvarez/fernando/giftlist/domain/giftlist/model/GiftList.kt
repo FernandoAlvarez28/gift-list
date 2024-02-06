@@ -16,6 +16,8 @@ class GiftList(
     val userId: UUID,
     val createdAt: LocalDateTime,
     var active: Boolean,
+    var giftQuantity: Int,
+    var guestQuantity: Int,
 ) {
     constructor(giftListRequest: GiftListRequest, user: UserReference) : this(
         giftListId = UUID.randomUUID(),
@@ -23,5 +25,11 @@ class GiftList(
         userId = user.userId,
         createdAt = LocalDateTime.now(),
         active = true,
+        giftQuantity = 0,
+        guestQuantity = 0,
     )
+
+    fun addGift() = ++this.giftQuantity
+
+    fun addGuest() = ++this.guestQuantity
 }

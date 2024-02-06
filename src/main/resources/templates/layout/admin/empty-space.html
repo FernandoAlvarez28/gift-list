@@ -6,6 +6,17 @@
         <i class="mx-auto fa-regular fa-folder-open"></i>
         <p class="lead text-gray-800 mb-5" th:text="${emptySpaceTitle}">Empty space title</p>
         <p class="text-gray-500 mb-0" th:text="${emptySpaceDescription}">Empty space description</p>
-        <a th:href="${emptySpaceActionUri}" th:text="${emptySpaceActionText}">Call to action</a>
+
+        <th:block th:if="${emptySpaceActionUri != null}">
+            <a th:href="${emptySpaceActionUri}" th:text="${emptySpaceActionText}">Call to action</a>
+        </th:block>
+        <th:block th:if="${emptySpaceActionModalId != null}">
+            <a href="#"
+               data-toggle="modal"
+               th:attr="data-target='#' + ${emptySpaceActionModalId}"
+               th:text="${emptySpaceActionText}">
+                Call to action
+            </a>
+        </th:block>
     </div>
 </th:block>

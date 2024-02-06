@@ -36,6 +36,7 @@ class Urls {
             const val MY_GIFT_LISTS_NEW = "/admin/my-gift-lists/new"
             const val MY_GIFT_LIST_DETAIL = "/admin/my-gift-lists/{giftListId}"
             const val MY_GIFT_LIST_DETAIL_NEW_GIFT = "/admin/my-gift-lists/{giftListId}/add-gift"
+            const val MY_GIFT_LIST_DETAIL_NEW_GUEST = "/admin/my-gift-lists/{giftListId}/add-guest"
 
             const val DEFAULT_URL = MY_GIFT_LISTS
         }

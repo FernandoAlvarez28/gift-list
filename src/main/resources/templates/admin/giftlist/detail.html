@@ -35,8 +35,9 @@
                                     <div class="dropdown-header" th:text="#{admin.gift-lists.detail.gifts.action}">
                                         Actions
                                     </div>
-                                    <a class="dropdown-item" href="#"
-                                       th:href="@{/admin/my-gift-lists/{giftListId}/add-gift (giftListId = ${giftList.giftListId})}"
+                                    <a class="dropdown-item"
+                                       data-toggle="modal"
+                                       data-target="#addGiftModal"
                                        th:text="#{admin.gift-lists.detail.gifts.action.add}">
                                         Add gift
                                     </a>
@@ -50,17 +51,18 @@
                                         emptySpaceTitle = #{admin.gift-lists.detail.gifts.empty-space.title},
                                         emptySpaceDescription = #{admin.gift-lists.detail.gifts.empty-space.description},
                                         emptySpaceActionText = #{admin.gift-lists.detail.gifts.empty-space.action-text},
-                                        emptySpaceActionUri = @{/admin/my-gift-lists/{giftListId}/add-gift (giftListId = ${giftList.giftListId})},
+                                        emptySpaceActionModalId = 'addGiftModal'
                                 )}"/>
                             </th:block>
 
                             <th:block th:unless="${#lists.isEmpty(gifts)}">
                                 <div class="row">
                                     <th:block th:each="gift : ${gifts}">
-                                        <div class="col-xl-4 col-lg-6 col-md-12">
+                                        <div class="col-xl-4 col-lg-6 col-md-12 my-2">
                                             <div class="card shadow">
                                                 <div class="card-body">
-                                                    <!--/* TODO implement gifts */-->
+                                                    <span th:text="${gift.name}">Gift name</span>
+                                                    <!--/* TODO show in a better way + gift details */-->
                                                 </div>
                                             </div>
                                         </div>
@@ -74,7 +76,7 @@
                 <div class="col-xl-3 col-lg-12 mb-4 mx-auto">
                     <div class="card shadow">
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary" th:text="#{admin.gift-lists.detail.gifts}">
+                            <h6 class="m-0 font-weight-bold text-primary" th:text="#{admin.gift-lists.detail.guests}">
                                 Guests
                             </h6>
 
@@ -88,8 +90,9 @@
                                     <div class="dropdown-header" th:text="#{admin.gift-lists.detail.guests.action}">
                                         Actions
                                     </div>
-                                    <a class="dropdown-item" href="#"
-                                       th:href="@{/admin/my-gift-lists/{giftListId}/add-guest (giftListId = ${giftList.giftListId})}"
+                                    <a class="dropdown-item"
+                                       data-toggle="modal"
+                                       data-target="#addGuestModal"
                                        th:text="#{admin.gift-lists.detail.guests.action.add}">
                                         Add guest
                                     </a>
@@ -103,17 +106,18 @@
                                         emptySpaceTitle = #{admin.gift-lists.detail.guests.empty-space.title},
                                         emptySpaceDescription = #{admin.gift-lists.detail.guests.empty-space.description},
                                         emptySpaceActionText = #{admin.gift-lists.detail.guests.empty-space.action-text},
-                                        emptySpaceActionUri = @{/admin/my-gift-lists/{giftListId}/add-guest (giftListId = ${giftList.giftListId})},
+                                        emptySpaceActionModalId = 'addGuestModal'
                                 )}"/>
                             </th:block>
 
                             <th:block th:unless="${#lists.isEmpty(guests)}">
                                 <div class="row">
                                     <th:block th:each="guest : ${guests}">
-                                        <div class="col-xl-4 col-lg-6 col-md-12">
+                                        <div class="col-md-12 my-2">
                                             <div class="card shadow">
                                                 <div class="card-body">
-                                                    <!--/* TODO implement guests */-->
+                                                    <span th:text="${guest.name}">Guest name</span>
+                                                    <!--/* TODO show in a better way + share link */-->
                                                 </div>
                                             </div>
                                         </div>
@@ -125,6 +129,122 @@
                 </div>
             </div>
 
+        </div>
+    </th:block>
+
+    <th:block layout:fragment="modals">
+        <div class="modal fade"
+             id="addGiftModal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="addGiftModal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form th:action="@{/admin/my-gift-lists/{giftListId}/add-gift (giftListId = ${giftList.giftListId})}"
+                          method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title" th:text="#{admin.gift-lists.detail.gifts.modal.add}">Add gift</h5>
+
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p th:text="#{admin.gift-lists.detail.gifts.modal.add.description}">Description</p>
+
+                            <div class="form-group">
+                                <input type="text"
+                                       class="form-control form-control-user"
+                                       name="name"
+                                       th:placeholder="#{admin.gift-lists.detail.gifts.modal.add.input.name}"
+                                       max="255"
+                                       required>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea type="text"
+                                          class="form-control form-control-user"
+                                          name="description"
+                                          th:placeholder="#{admin.gift-lists.detail.gifts.modal.add.input.description}"
+                                          max="500">
+
+                                </textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea type="text"
+                                          class="form-control form-control-user"
+                                          name="requirement"
+                                          th:placeholder="#{admin.gift-lists.detail.gifts.modal.add.input.requirement}"
+                                          max="500">
+
+                                </textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                    class="btn btn-secondary"
+                                    data-dismiss="modal"
+                                    th:text="#{admin.gift-lists.detail.gifts.modal.add.action.cancel}">
+                                Cancel
+                            </button>
+                            <button type="submit"
+                                    class="btn btn-primary btn-user"
+                                    th:text="#{admin.gift-lists.detail.gifts.modal.add.action.submit}">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade"
+             id="addGuestModal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="addGuestModal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form th:action="@{/admin/my-gift-lists/{giftListId}/add-guest (giftListId = ${giftList.giftListId})}"
+                          method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title" th:text="#{admin.gift-lists.detail.guests.modal.add}">Add guest</h5>
+
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p th:text="#{admin.gift-lists.detail.guests.modal.add.description}">Description</p>
+
+                            <div class="form-group">
+                                <input type="text"
+                                       class="form-control form-control-user"
+                                       name="name"
+                                       th:placeholder="#{admin.gift-lists.detail.guests.modal.add.input.name}"
+                                       max="255"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                    class="btn btn-secondary"
+                                    data-dismiss="modal"
+                                    th:text="#{admin.gift-lists.detail.guests.modal.add.action.cancel}">
+                                Cancel
+                            </button>
+                            <button type="submit"
+                                    class="btn btn-primary btn-user"
+                                    th:text="#{admin.gift-lists.detail.guests.modal.add.action.submit}">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </th:block>
 </th:block>

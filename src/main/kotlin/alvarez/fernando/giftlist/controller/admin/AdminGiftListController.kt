@@ -3,8 +3,12 @@ package alvarez.fernando.giftlist.controller.admin
 import alvarez.fernando.giftlist.config.security.UserAuth
 import alvarez.fernando.giftlist.controller.Urls
 import alvarez.fernando.giftlist.controller.Views
+import alvarez.fernando.giftlist.domain.gift.service.GiftService
 import alvarez.fernando.giftlist.domain.giftlist.service.GiftListService
+import alvarez.fernando.giftlist.domain.guest.service.GuestService
 import alvarez.fernando.giftlist.dto.GiftListRequestDto
+import alvarez.fernando.giftlist.dto.GiftRequestDto
+import alvarez.fernando.giftlist.dto.GuestRequestDto
 import alvarez.fernando.giftlist.util.RedirectView
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.stereotype.Controller
@@ -17,6 +21,8 @@ import java.util.UUID
 @Controller
 class AdminGiftListController(
     private val giftListService: GiftListService,
+    private val giftService: GiftService,
+    private val guestService: GuestService,
 ) {
     @GetMapping(Urls.Admin.MY_GIFT_LISTS)
     fun giftListsPage(
@@ -45,6 +51,8 @@ class AdminGiftListController(
 
         return ModelAndView(Views.Admin.GIFT_LIST_DETAIL)
             .addObject("giftList", giftList.get())
+            .addObject("gifts", this.giftService.findAllByGiftList(giftListId))
+            .addObject("guests", this.guestService.findAllByGiftList(giftListId))
     }
 
     @GetMapping(Urls.Admin.MY_GIFT_LISTS_NEW)
@@ -65,5 +73,53 @@ class AdminGiftListController(
             )
 
         return RedirectView(Urls.Admin.MY_GIFT_LIST_DETAIL, Pair("giftListId", createdGiftList.giftListId))
+    }
+
+    @PostMapping(Urls.Admin.MY_GIFT_LIST_DETAIL_NEW_GIFT)
+    fun addGiftToList(
+        @PathVariable giftListId: UUID,
+        giftRequest: GiftRequestDto,
+        @AuthenticationPrincipal userAuth: UserAuth,
+    ): ModelAndView {
+        val giftList =
+            this.giftListService.findByIdAndUser(
+                giftListId = giftListId,
+                user = userAuth,
+            )
+
+        if (giftList.isEmpty) {
+            return RedirectView(Urls.Admin.MY_GIFT_LISTS)
+        }
+
+        this.giftService.create(
+            giftRequest = giftRequest,
+            giftList = giftList.get(),
+        )
+
+        return RedirectView(Urls.Admin.MY_GIFT_LIST_DETAIL, Pair("giftListId", giftListId))
+    }
+
+    @PostMapping(Urls.Admin.MY_GIFT_LIST_DETAIL_NEW_GUEST)
+    fun addGuestToList(
+        @PathVariable giftListId: UUID,
+        guestRequest: GuestRequestDto,
+        @AuthenticationPrincipal userAuth: UserAuth,
+    ): ModelAndView {
+        val giftList =
+            this.giftListService.findByIdAndUser(
+                giftListId = giftListId,
+                user = userAuth,
+            )
+
+        if (giftList.isEmpty) {
+            return RedirectView(Urls.Admin.MY_GIFT_LISTS)
+        }
+
+        this.guestService.create(
+            guestRequest = guestRequest,
+            giftList = giftList.get(),
+        )
+
+        return RedirectView(Urls.Admin.MY_GIFT_LIST_DETAIL, Pair("giftListId", giftListId))
     }
 }
