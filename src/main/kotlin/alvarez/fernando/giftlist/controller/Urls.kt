@@ -45,7 +45,10 @@ class Urls {
     class Guests {
         companion object {
             const val ANT_MATCHER = "/guests/**"
-            const val LOGIN = "/guests"
+
+            const val GIFT_LIST = "/guests/{guestAccessCode}"
+            const val GIFT_DETAIL = "/guests/{guestAccessCode}/gifts/{giftId}/detail-fragment"
+            const val GIFT_PROMISE = "/guests/{guestAccessCode}/gifts/{giftId}/promise"
         }
     }
 

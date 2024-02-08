@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:insert="~{layout/guests/head.html}"/>
+
+    <th:block layout:fragment="extra-head"/>
+</head>
+
+<body>
+
+<!--/* Header */-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder" th:text="${giftList.name}">Gift List name</h1>
+            <p class="lead fw-normal text-white-50 mb-0"
+               th:text="#{guests.gift-list.detail.subtitle(${giftListUser.name})}">
+                See the gifts that USER would like to win and select what you will give!
+            </p>
+        </div>
+    </div>
+</header>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <th:block layout:fragment="content"/>
+    </div>
+</section>
+
+<th:block th:insert="~{layout/guests/footer.html}"/>
+
+<th:block layout:fragment="modals"/>
+
+<th:block th:insert="~{layout/login/javascript.html}"/>
+
+<th:block layout:fragment="extra-javascript"/>
+</body>
+
+</html>

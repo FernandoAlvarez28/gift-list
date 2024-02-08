@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<th:block xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{layout/guests/main.html}">
+
+    <th:block layout:fragment="content">
+        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <th:block th:each="gift : ${gifts}">
+                <div class="col mb-5" th:id="|gift-${gift.giftId}|">
+                    <div class="card h-100">
+                        <th:block th:if="${gift.promised}">
+                            <div class="badge bg-dark text-white position-absolute"
+                                 style="top: 0.5rem; right: 0.5rem"
+                                 th:text="#{guests.gift.promised.by-other}">
+                                <!--/* TODO promised "by you" condition and text */-->
+                                Already promised by someone
+                            </div>
+                        </th:block>
+
+
+                        <!--/* TODO image */-->
+                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
+
+                        <!--/* Details */-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <h5 class="fw-bolder" th:text="${gift.name}">Gift name</h5>
+                                <!--/* TODO price range */-->
+                                $40.00 - $80.00
+                            </div>
+                        </div>
+
+                        <!--/* Actions */-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto"
+                                   href="#"
+                                   th:text="#{guests.gift.action.promise}">
+                                    <!--/* TODO break promise text */-->
+                                    Promise
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </th:block>
+
+</th:block>

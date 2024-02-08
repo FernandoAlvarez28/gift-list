@@ -32,4 +32,12 @@ class GiftService(
 
     fun findAllByGiftList(giftListId: UUID) =
         this.giftRepository.findAllByGiftListIdOrderByNameAsc(giftListId = giftListId)
+
+    fun findByIdAndGiftListId(
+        giftId: UUID,
+        giftListId: UUID,
+    ) = this.giftRepository.findByGiftIdAndGiftListId(
+        giftId = giftId,
+        giftListId = giftListId,
+    )
 }

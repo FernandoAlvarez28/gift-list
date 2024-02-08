@@ -42,6 +42,8 @@ class GuestService(
         return accessCode
     }
 
+    fun findByAccessCode(accessCode: String) = this.guestRepository.findByAccessCode(accessCode)
+
     fun findAllByGiftList(giftListId: UUID) =
         this.guestRepository.findAllByGiftListIdOrderByNameAsc(giftListId = giftListId)
 }

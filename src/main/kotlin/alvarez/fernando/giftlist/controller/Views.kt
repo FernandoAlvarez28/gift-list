@@ -16,6 +16,13 @@ class Views {
 
     class Guests {
         companion object {
+            const val GIFT_LIST = "guests/giftlist/detail"
+        }
+
+        class Fragments {
+            companion object {
+                const val GIFT_DETAIL_FRAGMENT = "guests/fragments/gift/detail"
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 package alvarez.fernando.giftlist.domain.guest.model
 
 import alvarez.fernando.giftlist.domain.giftlist.model.GiftList
+import alvarez.fernando.giftlist.domain.guest.dto.GuestReference
 import alvarez.fernando.giftlist.domain.guest.dto.GuestRequest
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
@@ -11,12 +12,12 @@ import java.util.UUID
 @Entity
 @Table
 class Guest(
-    @Id val guestId: UUID,
-    val giftListId: UUID,
-    var name: String,
-    val accessCode: String,
+    @Id override val guestId: UUID,
+    override val giftListId: UUID,
+    override var name: String,
+    override val accessCode: String,
     val createdAt: LocalDateTime,
-) {
+) : GuestReference {
     constructor(
         guestRequest: GuestRequest,
         giftList: GiftList,

@@ -14,6 +14,17 @@ interface GiftListRepository : JpaRepository<GiftList, UUID> {
         @Param("userId") userId: UUID,
     ): Optional<GiftList>
 
+    @Query(
+        "SELECT GIFT_LIST.* FROM gift_list.GIFT_LIST " +
+            "INNER JOIN gift_list.GUEST ON GUEST.gift_list_id = GIFT_LIST.gift_list_id " +
+            "WHERE GIFT_LIST.gift_list_id = :giftListId AND guest_id = :guestId",
+        nativeQuery = true,
+    )
+    fun findOneByIdAndGuest(
+        @Param("giftListId") giftListId: UUID,
+        @Param("guestId") guestId: UUID,
+    ): Optional<GiftList>
+
     @Query("FROM GiftList WHERE userId = :userId")
     fun findAllByUserId(
         @Param("userId") userId: UUID,
