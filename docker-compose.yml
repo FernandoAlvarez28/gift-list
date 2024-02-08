@@ -1,4 +1,22 @@
 services:
+    giftlist:
+        container_name: giftlist
+        image: giftlist:latest
+        build:
+            dockerfile: Dockerfile
+            context: ./
+        environment:
+            - APP_DATABASE_HOST=postgres
+            - APP_DATABASE_PORT=5432
+            - APP_DATABASE_NAME=gift_list
+            - APP_DATABASE_SCHEMA=gift_list
+            - APP_DATABASE_USERNAME=postgres
+            - APP_DATABASE_PASSWORD=blue-elephant
+        depends_on:
+            - postgres
+        ports:
+            - "8080:8080"
+
     postgres:
         image: postgres:12-alpine
         environment:
