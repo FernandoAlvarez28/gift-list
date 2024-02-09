@@ -7,6 +7,7 @@ import alvarez.fernando.giftlist.domain.guest.dto.GuestRequest
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import org.apache.commons.lang3.StringUtils
 import java.time.LocalDateTime
 import java.util.UUID
 
@@ -32,6 +33,8 @@ class Guest(
         accessCode = accessCode,
         deletedAt = null,
     )
+
+    fun censoredAccessCode() = StringUtils.abbreviateMiddle(this.accessCode, "***", 9)
 
     fun edit(guestEditRequest: GuestEditRequest) {
         this.name = guestEditRequest.name.trim()

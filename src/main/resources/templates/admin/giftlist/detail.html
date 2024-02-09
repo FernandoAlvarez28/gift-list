@@ -221,7 +221,7 @@
                                                             <div class="copy"
                                                                  th:attr="data-clipboard-target='#' + ${id}">
                                                                 <span
-                                                                    th:text="#{admin.gift-lists.detail.guests.access-code-link.action.copy}">
+                                                                    th:text="#{admin.gift-lists.detail.guests.access-code-link.action.copy(${guest.censoredAccessCode()})}">
                                                                     Access link:
                                                                 </span>
 
