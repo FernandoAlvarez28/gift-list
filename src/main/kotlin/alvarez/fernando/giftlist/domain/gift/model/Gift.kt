@@ -6,6 +6,7 @@ import alvarez.fernando.giftlist.domain.giftlist.model.GiftList
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import org.apache.commons.lang3.StringUtils
 import java.time.LocalDateTime
 import java.util.UUID
 
@@ -26,8 +27,8 @@ class Gift(
         giftId = UUID.randomUUID(),
         giftListId = giftList.giftListId,
         name = giftRequest.name.trim(),
-        description = giftRequest.description?.trim(),
-        requirement = giftRequest.requirement?.trim(),
+        description = StringUtils.trimToNull(giftRequest.description),
+        requirement = StringUtils.trimToNull(giftRequest.requirement),
         createdAt = LocalDateTime.now(),
         deletedAt = null,
         promised = false,
@@ -35,8 +36,8 @@ class Gift(
 
     fun edit(giftEditRequest: GiftEditRequest) {
         this.name = giftEditRequest.name.trim()
-        this.description = giftEditRequest.description?.trim()
-        this.requirement = giftEditRequest.requirement?.trim()
+        this.description = StringUtils.trimToNull(giftEditRequest.description)
+        this.requirement = StringUtils.trimToNull(giftEditRequest.requirement)
     }
 
     fun delete() {
