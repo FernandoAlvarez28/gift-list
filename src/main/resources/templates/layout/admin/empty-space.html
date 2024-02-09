@@ -5,7 +5,9 @@
     <div class="text-center">
         <i class="mx-auto fa-regular fa-folder-open"></i>
         <p class="lead text-gray-800 mb-5" th:text="${emptySpaceTitle}">Empty space title</p>
-        <p class="text-gray-500 mb-0" th:text="${emptySpaceDescription}">Empty space description</p>
+        <th:block th:if="${emptySpaceDescription != null}">
+            <p class="text-gray-500 mb-0" th:text="${emptySpaceDescription}">Empty space description</p>
+        </th:block>
 
         <th:block th:if="${emptySpaceActionUri != null}">
             <a th:href="${emptySpaceActionUri}" th:text="${emptySpaceActionText}">Call to action</a>
