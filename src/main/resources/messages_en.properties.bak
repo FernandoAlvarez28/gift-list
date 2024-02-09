@@ -54,6 +54,7 @@ admin.gift-lists.detail.gifts.modal.add.input.requirement=Requirement
 admin.gift-lists.detail.gifts.modal.add.action.submit=Add
 admin.gift-lists.detail.gifts.modal.add.action.cancel=Cancel
 admin.gift-lists.detail.guests=Guests
+admin.gift-lists.detail.guests.access-code-link.action.copy=Copy access link
 admin.gift-lists.detail.guests.action=Actions
 admin.gift-lists.detail.guests.action.add=Add guest
 admin.gift-lists.detail.guests.empty-space.title=No guests yet

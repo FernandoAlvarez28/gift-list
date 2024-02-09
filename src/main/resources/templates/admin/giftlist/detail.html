@@ -112,12 +112,30 @@
 
                             <th:block th:unless="${#lists.isEmpty(guests)}">
                                 <div class="row">
-                                    <th:block th:each="guest : ${guests}">
+                                    <th:block th:each="guest, iter : ${guests}">
                                         <div class="col-md-12 my-2">
                                             <div class="card shadow">
                                                 <div class="card-body">
-                                                    <span th:text="${guest.name}">Guest name</span>
-                                                    <!--/* TODO show in a better way + share link */-->
+                                                    <div class="d-block mb-2">
+                                                        <span th:text="${guest.name}">Guest name</span>
+                                                    </div>
+
+                                                    <div class="d-block mb-2">
+                                                        <th:block th:with="url = ${@GuestAccessCodeUrlUtil.get(guest)},
+                                                                           id = |guest${iter.index}-url|">
+                                                            <input type="hidden" th:id="${id}" th:value="${url}">
+
+                                                            <div class="copy"
+                                                                 th:attr="data-clipboard-target='#' + ${id}">
+                                                                <span
+                                                                    th:text="#{admin.gift-lists.detail.guests.access-code-link.action.copy}">
+                                                                    Access link:
+                                                                </span>
+
+                                                                <i class="fa-solid fa-copy"></i>
+                                                            </div>
+                                                        </th:block>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
