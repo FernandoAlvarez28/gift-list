@@ -1,0 +1,77 @@
+yes=Yes
+no=No
+
+formats.date=MM/dd/yyyy
+formats.date-time=MM/dd/yyyy - HH:mm
+
+admin.login.title=My Gift Lists
+admin.login.email.placeholder=E-mail
+admin.login.password.placeholder=Password
+admin.login.submit.text=Enter
+
+admin.first-access.title=First user
+admin.first-access.name.placeholder=Name
+admin.first-access.email.placeholder=E-mail
+admin.first-access.password.placeholder=Password
+admin.first-access.submit.text=Sign up
+
+admin.layout.title=My Gift Lists
+admin.layout.side-bar.gift-lists=My lists
+admin.layout.top-bar.logout=Logout
+admin.layout.top-bar.language.english=English
+admin.layout.top-bar.language.portuguese-brazilian=Portuguese (Brazilian)
+admin.layout.footer.made-by-name=By {0}
+
+admin.gift-lists.title=My Lists
+admin.gift-lists.description=Create your gift lists and easily share them with your guests.
+admin.gift-lists.empty-space.title=Nothing yet...
+admin.gift-lists.empty-space.description=Create your first list
+admin.gift-lists.empty-space.action-text=New list
+admin.gift-lists.action.new-list=New list
+admin.gift-lists.table.head.name=Name
+admin.gift-lists.table.head.active=Active
+admin.gift-lists.table.head.created-at=Created at
+admin.gift-lists.table.head.gifts=Gifts
+admin.gift-lists.table.head.guests=Guests
+admin.gift-lists.table.body.action.view=View
+admin.gift-lists.new.title=New list
+admin.gift-lists.new.subtitle=Basic information
+admin.gift-lists.new.input.name=List name
+admin.gift-lists.new.submit=Create
+admin.gift-lists.detail.active.true=Active
+admin.gift-lists.detail.active.false=Inactive
+admin.gift-lists.detail.gifts=Gifts
+admin.gift-lists.detail.gifts.action.add=Add gift
+admin.gift-lists.detail.gifts.action=Actions
+admin.gift-lists.detail.gifts.empty-space.title=No gifts yet
+admin.gift-lists.detail.gifts.empty-space.description=Add at least one gift you want!
+admin.gift-lists.detail.gifts.empty-space.action-text=Add gift
+admin.gift-lists.detail.gifts.modal.add=Add gift
+admin.gift-lists.detail.gifts.modal.add.description=Write what you want to win. You can give an detailed description and/or requirements (size, model, etc.).
+admin.gift-lists.detail.gifts.modal.add.input.name=Name
+admin.gift-lists.detail.gifts.modal.add.input.description=Description
+admin.gift-lists.detail.gifts.modal.add.input.requirement=Requirement
+admin.gift-lists.detail.gifts.modal.add.action.submit=Add
+admin.gift-lists.detail.gifts.modal.add.action.cancel=Cancel
+admin.gift-lists.detail.guests=Guests
+admin.gift-lists.detail.guests.action=Actions
+admin.gift-lists.detail.guests.action.add=Add guest
+admin.gift-lists.detail.guests.empty-space.title=No guests yet
+admin.gift-lists.detail.guests.empty-space.description=Add who you want to share this list (and win the gifts...)
+admin.gift-lists.detail.guests.empty-space.action-text=Add guest
+admin.gift-lists.detail.guests.modal.add=Add guest
+admin.gift-lists.detail.guests.modal.add.description=Register your guests, so they can access your gift list and select what they will give you.
+admin.gift-lists.detail.guests.modal.add.input.name=Name
+admin.gift-lists.detail.guests.modal.add.action.submit=Add
+admin.gift-lists.detail.guests.modal.add.action.cancel=Cancel
+
+guests.access-code.invalid=Invalid or inexistent access code
+guests.layout.title=Gift Lists
+guests.layout.top-bar.language=Language
+guests.layout.top-bar.language.english=English
+guests.layout.top-bar.language.portuguese-brazilian=Portuguese (Brazilian)
+guests.gift-list.detail.subtitle=See the gifts that {0} would like to win and select what you will give!
+guests.gift.promised.by-other=Already promised by someone
+guests.gift.promised.by-you=You promised ?
+guests.gift.action.promise=Promise
+guests.gift.action.break-promise=Break promise
