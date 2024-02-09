@@ -34,7 +34,7 @@ class Guest(
     )
 
     fun edit(guestEditRequest: GuestEditRequest) {
-        this.name = guestEditRequest.name
+        this.name = guestEditRequest.name.trim()
     }
 
     fun delete() {
