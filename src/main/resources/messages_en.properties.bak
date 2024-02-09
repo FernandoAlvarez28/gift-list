@@ -1,5 +1,6 @@
 yes=Yes
 no=No
+loading=Loading...
 
 formats.date=MM/dd/yyyy
 formats.date-time=MM/dd/yyyy - HH:mm
@@ -57,6 +58,8 @@ admin.gift-lists.detail.guests=Guests
 admin.gift-lists.detail.guests.access-code-link.action.copy=Copy access link
 admin.gift-lists.detail.guests.action=Actions
 admin.gift-lists.detail.guests.action.add=Add guest
+admin.gift-lists.detail.guests.action.edit=Edit
+admin.gift-lists.detail.guests.action.delete=Delete
 admin.gift-lists.detail.guests.empty-space.title=No guests yet
 admin.gift-lists.detail.guests.empty-space.description=Add who you want to share this list (and win the gifts...)
 admin.gift-lists.detail.guests.empty-space.action-text=Add guest
@@ -65,6 +68,15 @@ admin.gift-lists.detail.guests.modal.add.description=Register your guests, so th
 admin.gift-lists.detail.guests.modal.add.input.name=Name
 admin.gift-lists.detail.guests.modal.add.action.submit=Add
 admin.gift-lists.detail.guests.modal.add.action.cancel=Cancel
+admin.gift-lists.detail.guests.modal.edit=Edit guest
+admin.gift-lists.detail.guests.modal.edit.description=Obs.: editing the guest will not change it's access code.
+admin.gift-lists.detail.guests.modal.edit.input.name=Name
+admin.gift-lists.detail.guests.modal.edit.action.submit=Save
+admin.gift-lists.detail.guests.modal.edit.action.cancel=Cancel
+admin.gift-lists.detail.guests.modal.delete=Delete guest
+admin.gift-lists.detail.guests.modal.delete.description=Do you wish to delete this guest? {0} will not be able to see your gift list anymore.
+admin.gift-lists.detail.guests.modal.delete.action.submit=Delete
+admin.gift-lists.detail.guests.modal.delete.action.cancel=Keep
 
 guests.access-code.invalid=Invalid or inexistent access code
 guests.layout.title=Gift Lists

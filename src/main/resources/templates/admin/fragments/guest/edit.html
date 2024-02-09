@@ -1,0 +1,40 @@
+<th:block xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <form th:action="${deleteGuestUri}"
+          method="POST">
+        <div class="modal-header">
+            <h5 class="modal-title" th:text="#{admin.gift-lists.detail.guests.modal.edit}">Edit guest</h5>
+
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p th:text="#{admin.gift-lists.detail.guests.modal.edit.description}">Description</p>
+
+            <div class="form-group">
+                <input type="text"
+                       class="form-control form-control-user"
+                       name="name"
+                       th:placeholder="#{admin.gift-lists.detail.guests.modal.edit.input.name}"
+                       th:value="${guest.name}"
+                       max="255"
+                       required>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#"
+               class="btn btn-secondary"
+               data-dismiss="modal"
+               th:text="#{admin.gift-lists.detail.guests.modal.edit.action.cancel}">
+                Cancel
+            </a>
+            <button type="submit"
+                    class="btn btn-primary btn-user"
+                    th:text="#{admin.gift-lists.detail.guests.modal.edit.action.submit}">
+                Edit
+            </button>
+        </div>
+    </form>
+
+</th:block>

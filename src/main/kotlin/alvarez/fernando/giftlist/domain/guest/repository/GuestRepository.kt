@@ -6,9 +6,14 @@ import java.util.Optional
 import java.util.UUID
 
 interface GuestRepository : JpaRepository<Guest, UUID> {
+    fun findByGuestIdAndGiftListIdAndDeletedAtIsNull(
+        guestId: UUID,
+        giftListId: UUID,
+    ): Optional<Guest>
+
     fun existsByAccessCode(accessCode: String): Boolean
 
-    fun findByAccessCode(accessCode: String): Optional<Guest>
+    fun findByAccessCodeAndDeletedAtIsNull(accessCode: String): Optional<Guest>
 
-    fun findAllByGiftListIdOrderByNameAsc(giftListId: UUID): List<Guest>
+    fun findAllByGiftListIdAndDeletedAtIsNullOrderByNameAsc(giftListId: UUID): List<Guest>
 }

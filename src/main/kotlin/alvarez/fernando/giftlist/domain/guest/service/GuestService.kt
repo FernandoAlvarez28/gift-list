@@ -2,6 +2,7 @@ package alvarez.fernando.giftlist.domain.guest.service
 
 import alvarez.fernando.giftlist.domain.giftlist.model.GiftList
 import alvarez.fernando.giftlist.domain.giftlist.service.GiftListService
+import alvarez.fernando.giftlist.domain.guest.dto.GuestEditRequest
 import alvarez.fernando.giftlist.domain.guest.dto.GuestRequest
 import alvarez.fernando.giftlist.domain.guest.model.Guest
 import alvarez.fernando.giftlist.domain.guest.repository.GuestRepository
@@ -42,8 +43,26 @@ class GuestService(
         return accessCode
     }
 
-    fun findByAccessCode(accessCode: String) = this.guestRepository.findByAccessCode(accessCode)
+    fun findByIdAndGiftList(
+        guestId: UUID,
+        giftListId: UUID,
+    ) = this.guestRepository.findByGuestIdAndGiftListIdAndDeletedAtIsNull(
+        guestId = guestId,
+        giftListId = giftListId,
+    )
+
+    fun findByAccessCode(accessCode: String) = this.guestRepository.findByAccessCodeAndDeletedAtIsNull(accessCode)
 
     fun findAllByGiftList(giftListId: UUID) =
-        this.guestRepository.findAllByGiftListIdOrderByNameAsc(giftListId = giftListId)
+        this.guestRepository.findAllByGiftListIdAndDeletedAtIsNullOrderByNameAsc(giftListId = giftListId)
+
+    fun edit(guest: Guest, guestEditRequest: GuestEditRequest) {
+        guest.edit(guestEditRequest = guestEditRequest)
+        this.guestRepository.save(guest)
+    }
+
+    fun delete(guest: Guest) {
+        guest.delete()
+        this.guestRepository.save(guest)
+    }
 }

@@ -1,6 +1,7 @@
 package alvarez.fernando.giftlist.domain.guest.model
 
 import alvarez.fernando.giftlist.domain.giftlist.model.GiftList
+import alvarez.fernando.giftlist.domain.guest.dto.GuestEditRequest
 import alvarez.fernando.giftlist.domain.guest.dto.GuestReference
 import alvarez.fernando.giftlist.domain.guest.dto.GuestRequest
 import jakarta.persistence.Entity
@@ -17,6 +18,7 @@ class Guest(
     override var name: String,
     override val accessCode: String,
     val createdAt: LocalDateTime,
+    var deletedAt: LocalDateTime?,
 ) : GuestReference {
     constructor(
         guestRequest: GuestRequest,
@@ -28,5 +30,14 @@ class Guest(
         name = guestRequest.name,
         createdAt = LocalDateTime.now(),
         accessCode = accessCode,
+        deletedAt = null,
     )
+
+    fun edit(guestEditRequest: GuestEditRequest) {
+        this.name = guestEditRequest.name
+    }
+
+    fun delete() {
+        this.deletedAt = LocalDateTime.now()
+    }
 }

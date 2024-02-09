@@ -12,6 +12,13 @@ class Views {
             const val GIFT_LISTS_NEW = "admin/giftlist/new"
             const val GIFT_LIST_DETAIL = "admin/giftlist/detail"
         }
+
+        class Fragments {
+            companion object {
+                const val GUEST_DELETE_FRAGMENT = "admin/fragments/guest/delete"
+                const val GUEST_EDIT_FRAGMENT = "admin/fragments/guest/edit"
+            }
+        }
     }
 
     class Guests {

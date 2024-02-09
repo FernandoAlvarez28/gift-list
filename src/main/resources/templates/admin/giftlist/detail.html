@@ -115,11 +115,44 @@
                                     <th:block th:each="guest, iter : ${guests}">
                                         <div class="col-md-12 my-2">
                                             <div class="card shadow">
-                                                <div class="card-body">
-                                                    <div class="d-block mb-2">
-                                                        <span th:text="${guest.name}">Guest name</span>
-                                                    </div>
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold" th:text="${guest.name}">
+                                                        Guest name
+                                                    </h6>
 
+                                                    <div class="dropdown no-arrow">
+                                                        <a class="dropdown-toggle" href="#" role="button"
+                                                           id="guestActionsDropdownMenuLink"
+                                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                             aria-labelledby="guestActionsDropdownMenuLink">
+                                                            <div class="dropdown-header"
+                                                                 th:text="#{admin.gift-lists.detail.guests.action}">
+                                                                Actions
+                                                            </div>
+
+                                                            <a class="dropdown-item"
+                                                               data-toggle="modal"
+                                                               data-target="#editGuestModal"
+                                                               th:attr="data-target-content-uri=@{/admin/my-gift-lists/{giftListId}/guests/{guestId}/edit/fragment (giftListId = ${giftList.giftListId}, guestId = ${guest.guestId})}"
+                                                               th:text="#{admin.gift-lists.detail.guests.action.edit}">
+                                                                Edit
+                                                            </a>
+
+                                                            <a class="dropdown-item"
+                                                               data-toggle="modal"
+                                                               data-target="#deleteGuestModal"
+                                                               th:attr="data-target-content-uri=@{/admin/my-gift-lists/{giftListId}/guests/{guestId}/delete/fragment (giftListId = ${giftList.giftListId}, guestId = ${guest.guestId})}"
+                                                               th:text="#{admin.gift-lists.detail.guests.action.delete}">
+                                                                Delete
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card-body">
                                                     <div class="d-block mb-2">
                                                         <th:block th:with="url = ${@GuestAccessCodeUrlUtil.get(guest)},
                                                                            id = |guest${iter.index}-url|">
@@ -257,6 +290,40 @@
                             </button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade"
+             id="editGuestModal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="editGuestModal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="py-5">
+                        <th:block th:insert="~{layout/admin/empty-space :: empty-space(
+                            emptySpaceTitle = #{loading}
+                        )}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade"
+             id="deleteGuestModal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="deleteGuestModal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="py-5">
+                        <th:block th:insert="~{layout/admin/empty-space :: empty-space(
+                            emptySpaceTitle = #{loading}
+                        )}"/>
+                    </div>
                 </div>
             </div>
         </div>
