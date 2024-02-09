@@ -61,8 +61,12 @@ class GuestService(
         this.guestRepository.save(guest)
     }
 
-    fun delete(guest: Guest) {
+    fun delete(
+        guest: Guest,
+        giftList: GiftList,
+    ) {
         guest.delete()
         this.guestRepository.save(guest)
+        this.giftListService.removeGuest(giftList = giftList)
     }
 }

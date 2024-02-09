@@ -36,8 +36,18 @@ class GiftListService(
         this.giftListRepository.save(giftList)
     }
 
+    fun removeGift(giftList: GiftList) {
+        giftList.removeGift()
+        this.giftListRepository.save(giftList)
+    }
+
     fun addGuest(giftList: GiftList) {
         giftList.addGuest()
+        this.giftListRepository.save(giftList)
+    }
+
+    fun removeGuest(giftList: GiftList) {
+        giftList.removeGuest()
         this.giftListRepository.save(giftList)
     }
 }

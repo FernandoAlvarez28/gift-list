@@ -31,5 +31,9 @@ class GiftList(
 
     fun addGift() = ++this.giftQuantity
 
+    fun removeGift() = --this.giftQuantity
+
     fun addGuest() = ++this.guestQuantity
+
+    fun removeGuest() = --this.guestQuantity
 }

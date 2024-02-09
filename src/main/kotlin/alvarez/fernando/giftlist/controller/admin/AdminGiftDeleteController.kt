@@ -55,14 +55,17 @@ class AdminGiftDeleteController(
         @PathVariable giftId: UUID,
         @AuthenticationPrincipal userAuth: UserAuth,
     ): ModelAndView {
-        val (_, gift) =
+        val (giftList, gift) =
             this.findGiftListAndGift(
                 giftListId = giftListId,
                 userAuth = userAuth,
                 giftId = giftId,
             )
 
-        this.giftService.delete(gift)
+        this.giftService.delete(
+            gift = gift,
+            giftList = giftList,
+        )
 
         return RedirectView(
             Urls.processParams(

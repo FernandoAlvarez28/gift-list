@@ -50,8 +50,12 @@ class GiftService(
         this.giftRepository.save(gift)
     }
 
-    fun delete(gift: Gift) {
+    fun delete(
+        gift: Gift,
+        giftList: GiftList,
+    ) {
         gift.delete()
         this.giftRepository.save(gift)
+        this.giftListService.removeGift(giftList = giftList)
     }
 }
