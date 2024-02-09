@@ -1,5 +1,6 @@
 package alvarez.fernando.giftlist.domain.gift.model
 
+import alvarez.fernando.giftlist.domain.gift.dto.GiftEditRequest
 import alvarez.fernando.giftlist.domain.gift.dto.GiftRequest
 import alvarez.fernando.giftlist.domain.giftlist.model.GiftList
 import jakarta.persistence.Entity
@@ -18,6 +19,7 @@ class Gift(
     var requirement: String?,
     val createdAt: LocalDateTime,
     var promised: Boolean,
+    var deletedAt: LocalDateTime?,
     // TODO save image somehow
 ) {
     constructor(giftRequest: GiftRequest, giftList: GiftList) : this(
@@ -27,6 +29,17 @@ class Gift(
         description = giftRequest.description?.trim(),
         requirement = giftRequest.requirement?.trim(),
         createdAt = LocalDateTime.now(),
+        deletedAt = null,
         promised = false,
     )
+
+    fun edit(giftEditRequest: GiftEditRequest) {
+        this.name = giftEditRequest.name.trim()
+        this.description = giftEditRequest.description?.trim()
+        this.requirement = giftEditRequest.requirement?.trim()
+    }
+
+    fun delete() {
+        this.deletedAt = LocalDateTime.now()
+    }
 }

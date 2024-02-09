@@ -6,9 +6,9 @@ import java.util.Optional
 import java.util.UUID
 
 interface GiftRepository : JpaRepository<Gift, UUID> {
-    fun findAllByGiftListIdOrderByNameAsc(giftListId: UUID): List<Gift>
+    fun findAllByGiftListIdAndDeletedAtNullOrderByNameAsc(giftListId: UUID): List<Gift>
 
-    fun findByGiftIdAndGiftListId(
+    fun findByGiftIdAndGiftListIdAndDeletedAtNull(
         giftId: UUID,
         giftListId: UUID,
     ): Optional<Gift>

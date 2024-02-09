@@ -36,6 +36,8 @@ class Urls {
             const val MY_GIFT_LISTS_NEW = "/admin/my-gift-lists/new"
             const val MY_GIFT_LIST_DETAIL = "/admin/my-gift-lists/{giftListId}"
             const val MY_GIFT_LIST_DETAIL_NEW_GIFT = "/admin/my-gift-lists/{giftListId}/add-gift"
+            const val MY_GIFT_LIST_DETAIL_GIFT_DELETE = "/admin/my-gift-lists/{giftListId}/gifts/{giftId}/delete"
+            const val MY_GIFT_LIST_DETAIL_GIFT_EDIT = "/admin/my-gift-lists/{giftListId}/gifts/{giftId}/edit"
             const val MY_GIFT_LIST_DETAIL_NEW_GUEST = "/admin/my-gift-lists/{giftListId}/add-guest"
             const val MY_GIFT_LIST_DETAIL_GUEST_DELETE = "/admin/my-gift-lists/{giftListId}/guests/{guestId}/delete"
             const val MY_GIFT_LIST_DETAIL_GUEST_EDIT = "/admin/my-gift-lists/{giftListId}/guests/{guestId}/edit"
@@ -45,6 +47,10 @@ class Urls {
 
         class Fragments {
             companion object {
+                const val MY_GIFT_LIST_DETAIL_GIFT_DELETE_FRAGMENT =
+                    "/admin/my-gift-lists/{giftListId}/gifts/{giftId}/delete/fragment"
+                const val MY_GIFT_LIST_DETAIL_GIFT_EDIT_FRAGMENT =
+                    "/admin/my-gift-lists/{giftListId}/gifts/{giftId}/edit/fragment"
                 const val MY_GIFT_LIST_DETAIL_GUEST_DELETE_FRAGMENT =
                     "/admin/my-gift-lists/{giftListId}/guests/{guestId}/delete/fragment"
                 const val MY_GIFT_LIST_DETAIL_GUEST_EDIT_FRAGMENT =

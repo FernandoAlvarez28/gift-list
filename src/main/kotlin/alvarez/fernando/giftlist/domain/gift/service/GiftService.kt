@@ -1,5 +1,6 @@
 package alvarez.fernando.giftlist.domain.gift.service
 
+import alvarez.fernando.giftlist.domain.gift.dto.GiftEditRequest
 import alvarez.fernando.giftlist.domain.gift.dto.GiftRequest
 import alvarez.fernando.giftlist.domain.gift.model.Gift
 import alvarez.fernando.giftlist.domain.gift.repository.GiftRepository
@@ -31,13 +32,26 @@ class GiftService(
     }
 
     fun findAllByGiftList(giftListId: UUID) =
-        this.giftRepository.findAllByGiftListIdOrderByNameAsc(giftListId = giftListId)
+        this.giftRepository.findAllByGiftListIdAndDeletedAtNullOrderByNameAsc(giftListId = giftListId)
 
     fun findByIdAndGiftListId(
         giftId: UUID,
         giftListId: UUID,
-    ) = this.giftRepository.findByGiftIdAndGiftListId(
+    ) = this.giftRepository.findByGiftIdAndGiftListIdAndDeletedAtNull(
         giftId = giftId,
         giftListId = giftListId,
     )
+
+    fun edit(
+        gift: Gift,
+        giftEditRequest: GiftEditRequest,
+    ) {
+        gift.edit(giftEditRequest = giftEditRequest)
+        this.giftRepository.save(gift)
+    }
+
+    fun delete(gift: Gift) {
+        gift.delete()
+        this.giftRepository.save(gift)
+    }
 }

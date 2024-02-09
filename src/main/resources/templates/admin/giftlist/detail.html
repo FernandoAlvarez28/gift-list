@@ -60,6 +60,43 @@
                                     <th:block th:each="gift : ${gifts}">
                                         <div class="col-xl-4 col-lg-6 col-md-12 my-2">
                                             <div class="card shadow">
+                                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0 font-weight-bold" th:text="${gift.name}">
+                                                        Gift name
+                                                    </h6>
+
+                                                    <div class="dropdown no-arrow">
+                                                        <a class="dropdown-toggle" href="#" role="button"
+                                                           id="giftActionsDropdownMenuLink"
+                                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                                             aria-labelledby="giftActionsDropdownMenuLink">
+                                                            <div class="dropdown-header"
+                                                                 th:text="#{admin.gift-lists.detail.gifts.action}">
+                                                                Actions
+                                                            </div>
+
+                                                            <a class="dropdown-item"
+                                                               data-toggle="modal"
+                                                               data-target="#editGiftModal"
+                                                               th:attr="data-target-content-uri=@{/admin/my-gift-lists/{giftListId}/gifts/{giftId}/edit/fragment (giftListId = ${giftList.giftListId}, giftId = ${gift.giftId})}"
+                                                               th:text="#{admin.gift-lists.detail.gifts.action.edit}">
+                                                                Edit
+                                                            </a>
+
+                                                            <a class="dropdown-item"
+                                                               data-toggle="modal"
+                                                               data-target="#deleteGiftModal"
+                                                               th:attr="data-target-content-uri=@{/admin/my-gift-lists/{giftListId}/gifts/{giftId}/delete/fragment (giftListId = ${giftList.giftListId}, giftId = ${gift.giftId})}"
+                                                               th:text="#{admin.gift-lists.detail.gifts.action.delete}">
+                                                                Delete
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="card-body">
                                                     <span th:text="${gift.name}">Gift name</span>
                                                     <!--/* TODO show in a better way + gift details */-->
@@ -290,6 +327,40 @@
                             </button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade"
+             id="editGiftModal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="editGiftModal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="py-5">
+                        <th:block th:insert="~{layout/admin/empty-space :: empty-space(
+                            emptySpaceTitle = #{loading}
+                        )}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade"
+             id="deleteGiftModal"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="deleteGiftModal"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="py-5">
+                        <th:block th:insert="~{layout/admin/empty-space :: empty-space(
+                            emptySpaceTitle = #{loading}
+                        )}"/>
+                    </div>
                 </div>
             </div>
         </div>
