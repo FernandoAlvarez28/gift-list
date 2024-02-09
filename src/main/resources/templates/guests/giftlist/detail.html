@@ -12,9 +12,9 @@
                         <th:block th:if="${gift.promised}">
                             <div class="badge bg-dark text-white position-absolute"
                                  style="top: 0.5rem; right: 0.5rem"
-                                 th:text="#{guests.gift.promised.by-other}">
-                                <!--/* TODO promised "by you" condition and text */-->
-                                Already promised by someone
+                                 th:text="#{guests.gift.chosen.by-other}">
+                                <!--/* TODO chosen "by you" condition and text */-->
+                                Already chosen by someone
                             </div>
                         </th:block>
 
@@ -38,9 +38,9 @@
                             <div class="text-center">
                                 <a class="btn btn-outline-dark mt-auto"
                                    href="#"
-                                   th:text="#{guests.gift.action.promise}">
-                                    <!--/* TODO break promise text */-->
-                                    Promise
+                                   th:text="#{guests.gift.action.choose}">
+                                    <!--/* TODO give up text */-->
+                                    Choose
                                 </a>
                             </div>
                         </div>

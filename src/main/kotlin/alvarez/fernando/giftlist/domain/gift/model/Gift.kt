@@ -20,6 +20,7 @@ class Gift(
     var requirement: String?,
     val createdAt: LocalDateTime,
     var promised: Boolean,
+    // TODO rename "promised" to "chosen" or something
     var deletedAt: LocalDateTime?,
     // TODO save image somehow
 ) {
