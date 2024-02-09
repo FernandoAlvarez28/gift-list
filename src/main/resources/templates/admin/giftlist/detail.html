@@ -98,8 +98,31 @@
                                                 </div>
 
                                                 <div class="card-body">
-                                                    <span th:text="${gift.name}">Gift name</span>
-                                                    <!--/* TODO show in a better way + gift details */-->
+                                                    <div class="d-block" th:if="${gift.description != null}">
+                                                        <span class="font-weight-bold"
+                                                              th:text="|#{admin.gift-lists.detail.gifts.description}:|">
+                                                            Description:
+                                                        </span>
+                                                        <span th:text="${gift.description}">
+                                                            Description
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="d-block" th:if="${gift.requirement != null}">
+                                                        <span class="font-weight-bold"
+                                                              th:text="|#{admin.gift-lists.detail.gifts.requirement}:|">
+                                                            Requirement:
+                                                        </span>
+                                                        <span th:text="${gift.requirement}">
+                                                            Requirement
+                                                        </span>
+                                                    </div>
+
+                                                    <th:block th:if="${gift.description == null && gift.requirement == null}"
+                                                              th:insert="~{layout/admin/empty-space :: empty-space(
+                                                        emptySpaceTitle = #{admin.gift-lists.detail.gifts.empty-details},
+                                                        emptySpaceMargin = ''
+                                                    )}"/>
                                                 </div>
                                             </div>
                                         </div>
