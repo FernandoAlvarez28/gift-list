@@ -30,7 +30,6 @@ class Views {
 
         class Fragments {
             companion object {
-                const val GIFT_DETAIL_FRAGMENT = "guests/fragments/gift/detail"
             }
         }
     }

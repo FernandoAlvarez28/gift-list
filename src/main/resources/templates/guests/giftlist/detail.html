@@ -32,6 +32,39 @@
                                 $40.00 - $80.00
                                 */-->
                             </div>
+
+                            <div class="d-block">
+                                <span class="fw-bolder"
+                                      th:text="|#{admin.gift-lists.detail.gifts.description}:|">
+                                    Description:
+                                </span>
+                                <span>
+                                    <th:block th:if="${gift.description != null}"
+                                              th:text="${gift.description}">
+                                        Description
+                                    </th:block>
+                                    <th:block th:if="${gift.description == null}">
+                                            --
+                                    </th:block>
+                                </span>
+
+                            </div>
+
+                            <div class="d-block">
+                                <span class="fw-bolder"
+                                      th:text="|#{admin.gift-lists.detail.gifts.requirement}:|">
+                                    Requirement:
+                                </span>
+                                <span>
+                                    <th:block th:if="${gift.requirement != null}"
+                                              th:text="${gift.requirement}">
+                                        Requirement
+                                    </th:block>
+                                    <th:block th:if="${gift.requirement == null}">
+                                            --
+                                    </th:block>
+                                </span>
+                            </div>
                         </div>
 
                         <!--/* Actions */-->
