@@ -7,13 +7,14 @@
     <th:block layout:fragment="content">
         <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <th:block th:each="gift : ${gifts}">
-                <div class="col mb-5" th:id="|gift-${gift.giftId}|">
+                <div class="col mb-5" th:id="|gift-${gift.giftId}|"
+                     th:with="chosenByGuest = ${chosenGiftsIds.contains(gift.giftId)}">
                     <div class="card h-100">
-                        <th:block th:if="${gift.promised}">
-                            <div class="badge bg-dark text-white position-absolute"
+                        <th:block th:if="${gift.chosenByAGuest}">
+                            <div class="badge text-white position-absolute"
                                  style="top: 0.5rem; right: 0.5rem"
-                                 th:text="#{guests.gift.chosen.by-other}">
-                                <!--/* TODO chosen "by you" condition and text */-->
+                                 th:classappend="${chosenByGuest} ? 'bg-success' : 'bg-dark'"
+                                 th:text="${chosenByGuest} ? #{guests.gift.chosen.by-you} : #{guests.gift.chosen.by-other}">
                                 Already chosen by someone
                             </div>
                         </th:block>
@@ -36,12 +37,15 @@
                         <!--/* Actions */-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto"
-                                   href="#"
-                                   th:text="#{guests.gift.action.choose}">
-                                    <!--/* TODO give up text */-->
-                                    Choose
-                                </a>
+                                <form th:action="@{/guests/{guestAccessCode}/gifts/{giftId}/choice (guestAccessCode = ${#authentication.principal.accessCode}, giftId = ${gift.giftId})}"
+                                      method="post">
+                                    <button class="btn mt-auto"
+                                            type="submit"
+                                            th:classappend="${gift.chosenByAGuest} ? (${chosenByGuest} ? 'btn-outline-danger' : 'btn-outline-dark') : 'btn-outline-success'"
+                                            th:text="${chosenByGuest} ? #{guests.gift.action.choose.undo} : #{guests.gift.action.choose}">
+                                        Choose
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

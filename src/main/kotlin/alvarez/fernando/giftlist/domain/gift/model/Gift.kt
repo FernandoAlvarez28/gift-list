@@ -3,6 +3,7 @@ package alvarez.fernando.giftlist.domain.gift.model
 import alvarez.fernando.giftlist.domain.gift.dto.GiftEditRequest
 import alvarez.fernando.giftlist.domain.gift.dto.GiftRequest
 import alvarez.fernando.giftlist.domain.giftlist.model.GiftList
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
@@ -19,8 +20,7 @@ class Gift(
     var description: String?,
     var requirement: String?,
     val createdAt: LocalDateTime,
-    var promised: Boolean,
-    // TODO rename "promised" to "chosen" or something
+    @Column(name = "chosen_by_a_guest") var chosenByAGuest: Boolean,
     var deletedAt: LocalDateTime?,
     // TODO save image somehow
 ) {
@@ -32,7 +32,7 @@ class Gift(
         requirement = StringUtils.trimToNull(giftRequest.requirement),
         createdAt = LocalDateTime.now(),
         deletedAt = null,
-        promised = false,
+        chosenByAGuest = false,
     )
 
     fun edit(giftEditRequest: GiftEditRequest) {

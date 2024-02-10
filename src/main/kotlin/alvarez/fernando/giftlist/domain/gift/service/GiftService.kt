@@ -58,4 +58,12 @@ class GiftService(
         this.giftRepository.save(gift)
         this.giftListService.removeGift(giftList = giftList)
     }
+
+    fun markAsChosen(
+        gift: Gift,
+        chosen: Boolean,
+    ) {
+        gift.chosenByAGuest = chosen
+        this.giftRepository.save(gift)
+    }
 }
