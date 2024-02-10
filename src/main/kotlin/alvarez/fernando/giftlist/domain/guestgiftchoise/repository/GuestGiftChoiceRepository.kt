@@ -14,4 +14,6 @@ interface GuestGiftChoiceRepository : JpaRepository<GuestGiftChoice, UUID> {
     ): Optional<GuestGiftChoice>
 
     fun existsByGiftId(giftId: UUID): Boolean
+
+    fun findAllByGiftId(giftId: UUID): List<GuestGiftChoice>
 }

@@ -5,6 +5,7 @@ import alvarez.fernando.giftlist.controller.Urls
 import alvarez.fernando.giftlist.controller.Views
 import alvarez.fernando.giftlist.domain.gift.exception.GiftNotFoundException
 import alvarez.fernando.giftlist.domain.gift.model.Gift
+import alvarez.fernando.giftlist.domain.gift.service.GiftDeleteService
 import alvarez.fernando.giftlist.domain.gift.service.GiftService
 import alvarez.fernando.giftlist.domain.giftlist.exception.GiftListNotFoundException
 import alvarez.fernando.giftlist.domain.giftlist.model.GiftList
@@ -22,6 +23,7 @@ import java.util.UUID
 class AdminGiftDeleteController(
     private val giftListService: GiftListService,
     private val giftService: GiftService,
+    private val giftDeleteService: GiftDeleteService,
 ) {
     @GetMapping(Urls.Admin.Fragments.MY_GIFT_LIST_DETAIL_GIFT_DELETE_FRAGMENT)
     fun deleteGiftModalFragment(
@@ -62,7 +64,7 @@ class AdminGiftDeleteController(
                 giftId = giftId,
             )
 
-        this.giftService.delete(
+        this.giftDeleteService.delete(
             gift = gift,
             giftList = giftList,
         )

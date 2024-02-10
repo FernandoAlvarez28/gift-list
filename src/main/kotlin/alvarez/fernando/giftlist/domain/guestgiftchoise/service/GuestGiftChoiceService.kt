@@ -55,4 +55,20 @@ class GuestGiftChoiceService(
     }
 
     fun findAllByGuest(guest: GuestReference) = this.guestGiftChoiceRepository.findAllByGuestId(guestId = guest.guestId)
+
+    fun findAllByGift(gift: Gift) = this.guestGiftChoiceRepository.findAllByGiftId(giftId = gift.giftId)
+
+    fun removeAllByGuest(guest: GuestReference) {
+        for (choice in this.findAllByGuest(guest = guest)) {
+            this.giftService.findByIdAndGiftListId(giftListId = choice.giftListId, giftId = choice.giftId).ifPresent {
+                this.removeChoice(gift = it, guestGiftChoice = choice)
+            }
+        }
+    }
+
+    fun removeAllByGift(gift: Gift) {
+        for (choice in this.findAllByGift(gift = gift)) {
+            this.removeChoice(gift = gift, guestGiftChoice = choice)
+        }
+    }
 }

@@ -7,6 +7,7 @@ import alvarez.fernando.giftlist.domain.guest.dto.GuestRequest
 import alvarez.fernando.giftlist.domain.guest.model.Guest
 import alvarez.fernando.giftlist.domain.guest.repository.GuestRepository
 import alvarez.fernando.giftlist.domain.guest.util.AccessCodeGenerator
+import alvarez.fernando.giftlist.domain.guestgiftchoise.service.GuestGiftChoiceService
 import org.springframework.stereotype.Service
 import java.util.UUID
 
@@ -14,6 +15,7 @@ import java.util.UUID
 class GuestService(
     private val guestRepository: GuestRepository,
     private val giftListService: GiftListService,
+    private val guestGiftChoiceService: GuestGiftChoiceService,
 ) {
     fun create(
         guestRequest: GuestRequest,
@@ -68,5 +70,6 @@ class GuestService(
         guest.delete()
         this.guestRepository.save(guest)
         this.giftListService.removeGuest(giftList = giftList)
+        this.guestGiftChoiceService.removeAllByGuest(guest = guest)
     }
 }
