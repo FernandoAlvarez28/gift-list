@@ -75,7 +75,7 @@
                                     <button class="btn mt-auto"
                                             type="submit"
                                             th:classappend="${gift.chosenByAGuest} ? (${chosenByGuest} ? 'btn-outline-danger' : 'btn-outline-dark') : 'btn-outline-success'"
-                                            th:text="${chosenByGuest} ? #{guests.gift.action.choose.undo} : #{guests.gift.action.choose}">
+                                            th:text="${gift.chosenByAGuest} ? (${chosenByGuest} ? #{guests.gift.action.choose.undo} : #{guests.gift.action.choose.anyway}) : #{guests.gift.action.choose}">
                                         Choose
                                     </button>
                                 </form>

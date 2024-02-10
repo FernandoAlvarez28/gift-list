@@ -103,4 +103,5 @@ guests.gift-list.detail.subtitle=See the gifts that {0} would like to win and se
 guests.gift.chosen.by-other=Already chosen by someone
 guests.gift.chosen.by-you=Chosen by you
 guests.gift.action.choose=Choose
+guests.gift.action.choose.anyway=Choose anyway
 guests.gift.action.choose.undo=Give up
