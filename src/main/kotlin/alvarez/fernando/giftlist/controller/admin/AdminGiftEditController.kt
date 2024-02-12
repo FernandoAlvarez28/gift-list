@@ -69,12 +69,7 @@ class AdminGiftEditController(
             giftEditRequest = giftEditRequest,
         )
 
-        return RedirectView(
-            Urls.processParams(
-                uri = Urls.Admin.MY_GIFT_LIST_DETAIL,
-                "giftListId" to giftListId,
-            ),
-        )
+        return RedirectView("${Urls.Admin.MY_GIFT_LIST_DETAIL}#gift-$giftId")
     }
 
     private fun findGiftListAndGift(

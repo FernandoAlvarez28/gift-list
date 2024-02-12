@@ -58,7 +58,7 @@
                             <th:block th:unless="${#lists.isEmpty(gifts)}">
                                 <div class="row">
                                     <th:block th:each="gift : ${gifts}">
-                                        <div class="col-xl-4 col-lg-6 col-md-12 my-2">
+                                        <div class="col-xl-4 col-lg-6 col-md-12 my-2" th:id="|gift-${gift.giftId}|">
                                             <div class="card shadow">
                                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                     <h6 class="m-0 font-weight-bold" th:classappend="${gift.chosenByAGuest} ? 'text-success' : ''">
@@ -180,7 +180,7 @@
                             <th:block th:unless="${#lists.isEmpty(guests)}">
                                 <div class="row">
                                     <th:block th:each="guest, iter : ${guests}">
-                                        <div class="col-md-12 my-2">
+                                        <div class="col-md-12 my-2" th:id="|guest-${guest.guestId}|">
                                             <div class="card shadow">
                                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                                     <h6 class="m-0 font-weight-bold" th:text="${guest.name}">

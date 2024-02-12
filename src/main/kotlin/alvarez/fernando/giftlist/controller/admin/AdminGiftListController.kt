@@ -91,12 +91,12 @@ class AdminGiftListController(
             return RedirectView(Urls.Admin.MY_GIFT_LISTS)
         }
 
-        this.giftService.create(
+        val gift = this.giftService.create(
             giftRequest = giftRequest,
             giftList = giftList.get(),
         )
 
-        return RedirectView(Urls.Admin.MY_GIFT_LIST_DETAIL, Pair("giftListId", giftListId))
+        return RedirectView("${Urls.Admin.MY_GIFT_LIST_DETAIL}#gift-${gift.giftId}")
     }
 
     @PostMapping(Urls.Admin.MY_GIFT_LIST_DETAIL_NEW_GUEST)
@@ -115,11 +115,11 @@ class AdminGiftListController(
             return RedirectView(Urls.Admin.MY_GIFT_LISTS)
         }
 
-        this.guestService.create(
+        val guest = this.guestService.create(
             guestRequest = guestRequest,
             giftList = giftList.get(),
         )
 
-        return RedirectView(Urls.Admin.MY_GIFT_LIST_DETAIL, Pair("giftListId", giftListId))
+        return RedirectView("${Urls.Admin.MY_GIFT_LIST_DETAIL}#guest-${guest.guestId}")
     }
 }
