@@ -6,6 +6,20 @@
 
     <th:block layout:fragment="content">
         <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <div class="card-header text-center fw-bolder" style="height: 50px; background-color: #f2f2f2; border-bottom: 1px solid #ccc;">
+                        <p th:text="#{guests.gift-list.detail.orientation.title}">
+                            Orientation title
+                        </p>
+                    </div>
+
+                    <div class="card-body p-4" th:text="#{guests.gift-list.detail.orientation.text}">
+                        Orientation text
+                    </div>
+                </div>
+            </div>
+
             <th:block th:each="gift : ${gifts}">
                 <div class="col mb-5" th:id="|gift-${gift.giftId}|"
                      th:with="chosenByGuest = ${chosenGiftsIds.contains(gift.giftId)}">
