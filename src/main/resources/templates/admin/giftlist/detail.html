@@ -87,7 +87,7 @@
 
                                                             <a class="dropdown-item"
                                                                data-toggle="modal"
-                                                               data-target="#editGiftModal"
+                                                               data-target="#genericModal"
                                                                th:attr="data-target-content-uri=@{/admin/my-gift-lists/{giftListId}/gifts/{giftId}/edit/fragment (giftListId = ${giftList.giftListId}, giftId = ${gift.giftId})}"
                                                                th:text="#{admin.gift-lists.detail.gifts.action.edit}">
                                                                 Edit
@@ -95,7 +95,7 @@
 
                                                             <a class="dropdown-item"
                                                                data-toggle="modal"
-                                                               data-target="#deleteGiftModal"
+                                                               data-target="#genericModal"
                                                                th:attr="data-target-content-uri=@{/admin/my-gift-lists/{giftListId}/gifts/{giftId}/delete/fragment (giftListId = ${giftList.giftListId}, giftId = ${gift.giftId})}"
                                                                th:text="#{admin.gift-lists.detail.gifts.action.delete}">
                                                                 Delete
@@ -202,7 +202,7 @@
 
                                                             <a class="dropdown-item"
                                                                data-toggle="modal"
-                                                               data-target="#editGuestModal"
+                                                               data-target="#genericModal"
                                                                th:attr="data-target-content-uri=@{/admin/my-gift-lists/{giftListId}/guests/{guestId}/edit/fragment (giftListId = ${giftList.giftListId}, guestId = ${guest.guestId})}"
                                                                th:text="#{admin.gift-lists.detail.guests.action.edit}">
                                                                 Edit
@@ -210,7 +210,7 @@
 
                                                             <a class="dropdown-item"
                                                                data-toggle="modal"
-                                                               data-target="#deleteGuestModal"
+                                                               data-target="#genericModal"
                                                                th:attr="data-target-content-uri=@{/admin/my-gift-lists/{giftListId}/guests/{guestId}/delete/fragment (giftListId = ${giftList.giftListId}, guestId = ${guest.guestId})}"
                                                                th:text="#{admin.gift-lists.detail.guests.action.delete}">
                                                                 Delete
@@ -362,61 +362,10 @@
         </div>
 
         <div class="modal fade"
-             id="editGiftModal"
+             id="genericModal"
              tabindex="-1"
              role="dialog"
-             aria-labelledby="editGiftModal"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="py-5">
-                        <th:block th:insert="~{layout/admin/empty-space :: empty-space(
-                            emptySpaceTitle = #{loading}
-                        )}"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade"
-             id="deleteGiftModal"
-             tabindex="-1"
-             role="dialog"
-             aria-labelledby="deleteGiftModal"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="py-5">
-                        <th:block th:insert="~{layout/admin/empty-space :: empty-space(
-                            emptySpaceTitle = #{loading}
-                        )}"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade"
-             id="editGuestModal"
-             tabindex="-1"
-             role="dialog"
-             aria-labelledby="editGuestModal"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="py-5">
-                        <th:block th:insert="~{layout/admin/empty-space :: empty-space(
-                            emptySpaceTitle = #{loading}
-                        )}"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade"
-             id="deleteGuestModal"
-             tabindex="-1"
-             role="dialog"
-             aria-labelledby="deleteGuestModal"
+             aria-labelledby="genericModal"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
