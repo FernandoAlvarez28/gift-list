@@ -42,6 +42,12 @@
                         </ul>
                     </li>
                 </ul>
+
+                <div class="d-flex">
+                    <span th:text="#{guests.layout.top-bar.hello(${#authentication.principal.name})}">
+                        Guest's name
+                    </span>
+                </div>
             </div>
         </div>
     </nav>
