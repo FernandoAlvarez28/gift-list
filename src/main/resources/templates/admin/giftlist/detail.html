@@ -221,19 +221,16 @@
 
                                                 <div class="card-body">
                                                     <div class="d-block mb-2">
-                                                        <th:block th:with="url = ${@GuestAccessCodeUrlUtil.get(guest)},
-                                                                           id = |guest${iter.index}-url|">
-                                                            <input type="hidden" th:id="${id}" th:value="${url}">
-
-                                                            <div class="copy"
-                                                                 th:attr="data-clipboard-target='#' + ${id}">
-                                                                <span
-                                                                    th:text="#{admin.gift-lists.detail.guests.access-code-link.action.copy(${guest.censoredAccessCode()})}">
-                                                                    Access link:
-                                                                </span>
-
-                                                                <i class="fa-solid fa-copy"></i>
-                                                            </div>
+                                                        <th:block th:with="id = |guest${iter.index}-url|">
+                                                            <span data-toggle="modal"
+                                                                  data-target="#genericModal"
+                                                                  th:attr="data-target-content-uri=@{/admin/my-gift-lists/{giftListId}/guests/{guestId}/access-code/fragment (giftListId = ${giftList.giftListId}, guestId = ${guest.guestId})}">
+                                                                <th:block
+                                                                    th:text="#{admin.gift-lists.detail.guests.access-code.action.view(${guest.censoredAccessCode()})}">
+                                                                    Access code
+                                                                </th:block>
+                                                                <i class="fa-solid fa-qrcode"></i>
+                                                            </span>
                                                         </th:block>
                                                     </div>
                                                 </div>

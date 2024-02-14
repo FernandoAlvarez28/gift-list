@@ -1,0 +1,59 @@
+<th:block xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"
+          th:with="accessCodeUrlId = |guest-${guest.guestId}-url|">
+        <div class="modal-header">
+            <h5 class="modal-title" th:text="#{admin.gift-lists.detail.guests.modal.access-code}">Access link</h5>
+
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p th:text="#{admin.gift-lists.detail.guests.modal.access-code.description-1(${guest.name})}">Description</p>
+            <p th:text="#{admin.gift-lists.detail.guests.modal.access-code.description-2}">Description</p>
+
+            <th:block th:with="imgSize = 250">
+                <div class="mx-auto text-center" th:style="|height: ${imgSize}px|">
+                    <img th:src="${accessCodeImageUri} + '?size=' + ${imgSize}" th:width="${imgSize}" th:height="${imgSize}" />
+                </div>
+            </th:block>
+
+            <input type="hidden" th:id="${accessCodeUrlId}" th:value="${accessCodeUrl}">
+
+            <div class="copy"
+                 th:attr="data-clipboard-target=${accessCodeUrlId}">
+                <span
+                    th:text="#{admin.gift-lists.detail.guests.modal.access-code.action.copy-link-with-code(${guest.censoredAccessCode()})}">
+                    Access code
+                </span>
+                <i class="fa-solid fa-copy"></i>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#"
+               class="btn btn-secondary"
+               data-dismiss="modal"
+               th:text="#{admin.gift-lists.detail.guests.modal.access-code.action.cancel}">
+                Close
+            </a>
+
+            <button type="button"
+                    class="btn btn-primary copy"
+                    th:attr="data-clipboard-target=${accessCodeUrlId}">
+                <th:block th:text="#{admin.gift-lists.detail.guests.modal.access-code.action.copy-link}">
+                    Copy link
+                </th:block>
+                <i class="fa-solid fa-copy"></i>
+            </button>
+
+            <a th:href="${accessCodeImageUri}"
+               download
+               class="btn btn-primary">
+                <th:block th:text="#{admin.gift-lists.detail.guests.modal.access-code.action.download}">
+                    Download
+                </th:block>
+                <i class="fa-solid fa-download"></i>
+            </a>
+        </div>
+</th:block>

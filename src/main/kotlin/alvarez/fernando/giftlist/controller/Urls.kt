@@ -41,6 +41,8 @@ class Urls {
             const val MY_GIFT_LIST_DETAIL_NEW_GUEST = "/admin/my-gift-lists/{giftListId}/add-guest"
             const val MY_GIFT_LIST_DETAIL_GUEST_DELETE = "/admin/my-gift-lists/{giftListId}/guests/{guestId}/delete"
             const val MY_GIFT_LIST_DETAIL_GUEST_EDIT = "/admin/my-gift-lists/{giftListId}/guests/{guestId}/edit"
+            const val MY_GIFT_LIST_DETAIL_GUEST_ACCESS_CODE =
+                "/admin/my-gift-lists/{giftListId}/guests/{guestId}/access-code"
 
             const val DEFAULT_URL = MY_GIFT_LISTS
         }
@@ -55,6 +57,8 @@ class Urls {
                     "/admin/my-gift-lists/{giftListId}/guests/{guestId}/delete/fragment"
                 const val MY_GIFT_LIST_DETAIL_GUEST_EDIT_FRAGMENT =
                     "/admin/my-gift-lists/{giftListId}/guests/{guestId}/edit/fragment"
+                const val MY_GIFT_LIST_DETAIL_GUEST_ACCESS_CODE_FRAGMENT =
+                    "/admin/my-gift-lists/{giftListId}/guests/{guestId}/access-code/fragment"
             }
         }
     }

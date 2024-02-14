@@ -19,6 +19,7 @@ class Views {
                 const val GIFT_EDIT_FRAGMENT = "admin/fragments/gift/edit"
                 const val GUEST_DELETE_FRAGMENT = "admin/fragments/guest/delete"
                 const val GUEST_EDIT_FRAGMENT = "admin/fragments/guest/edit"
+                const val GUEST_ACCESS_CODE_FRAGMENT = "admin/fragments/guest/access-code"
             }
         }
     }

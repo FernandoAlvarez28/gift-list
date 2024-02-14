@@ -6,6 +6,7 @@ $(document).ready(function() {
                 if (status === 'success') {
                     const modalId = $this.attr('data-target');
                     $(`${modalId} .modal-content`).html(data)
+                    initCopyToClipboard(`${modalId} .copy`)
                 }
             });
         });

@@ -17,6 +17,9 @@ java {
 
 repositories {
     mavenCentral()
+    maven {
+        setUrl("https://jitpack.io")
+    }
 }
 
 dependencies {
@@ -32,6 +35,7 @@ dependencies {
     implementation("org.bouncycastle:bcprov-jdk18on:1.77")
     implementation("org.flywaydb:flyway-core:9.22.3")
     implementation("org.apache.commons:commons-text:1.11.0")
+    implementation("com.github.kenglxn.qrgen:javase:3.0.1")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
