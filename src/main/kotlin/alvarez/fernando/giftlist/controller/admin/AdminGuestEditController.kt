@@ -14,7 +14,6 @@ import alvarez.fernando.giftlist.util.RedirectView
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.servlet.ModelAndView
@@ -42,7 +41,7 @@ class AdminGuestEditController(
             .addObject("giftList", giftList)
             .addObject("guest", guest)
             .addObject(
-                "deleteGuestUri",
+                "editGuestUri",
                 Urls.processParams(
                     uri = Urls.Admin.MY_GIFT_LIST_DETAIL_GUEST_EDIT,
                     "giftListId" to giftListId,
