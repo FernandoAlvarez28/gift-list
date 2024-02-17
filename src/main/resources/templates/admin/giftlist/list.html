@@ -5,80 +5,98 @@
           layout:decorate="~{layout/admin/main.html}">
 
     <th:block layout:fragment="content">
-        <div class="col-xl-9 col-lg-12 mb-4 mx-auto">
-            <h1 class="h3 mb-2 text-gray-800" th:text="#{admin.gift-lists.title}">My Lists</h1>
-            <p class="mb-4" th:text="#{admin.gift-lists.description}">Description</p>
-
-            <div class="card shadow">
-                <div class="card-header py-3">
-                    <a class="btn btn-primary float-right" th:href="${newGiftListUri}"
-                       th:text="#{admin.gift-lists.action.new-list}">
-                        New list
-                    </a>
-                </div>
-
-                <div class="card-body">
-
-                    <th:block th:if="${#lists.isEmpty(giftLists)}">
-                        <th:block th:insert="~{layout/admin/empty-space :: empty-space(
-                                        emptySpaceTitle = #{admin.gift-lists.empty-space.title},
-                                        emptySpaceDescription = #{admin.gift-lists.empty-space.description},
-                                        emptySpaceActionText = #{admin.gift-lists.empty-space.action-text},
-                                        emptySpaceActionUri = ${newGiftListUri},
-                            )}"/>
-                    </th:block>
-
+        <div class="row">
+            <div class="col-xl-9 col-lg-12 mb-4 mx-auto">
+                <div class="row mb-4">
+                    <div class="col-md-10 col-sm-12">
+                        <h1 class="h3 mb-2 text-gray-800" th:text="#{admin.gift-lists.title}">My Lists</h1>
+                        <p th:text="#{admin.gift-lists.description}">Description</p>
+                    </div>
 
                     <th:block th:unless="${#lists.isEmpty(giftLists)}">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th th:text="#{admin.gift-lists.table.head.name}">Name</th>
-                                    <th th:text="#{admin.gift-lists.table.head.active}">Active</th>
-                                    <th th:text="#{admin.gift-lists.table.head.created-at}">Created at</th>
-                                    <th th:text="#{admin.gift-lists.table.head.gifts}">Gifts</th>
-                                    <th th:text="#{admin.gift-lists.table.head.guests}">Guests</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                <th:block th:each="giftList : ${giftLists}">
-                                    <tr>
-                                        <td th:text="${giftList.name}">Name</td>
-                                        <td th:text="${giftList.active} ? #{yes} : #{no}">Active</td>
-                                        <td th:text="${#temporals.format(giftList.createdAt, dateTimeFormat)}">
-                                            Created at
-                                        </td>
-                                        <td>
-                                            <th:block th:if="${giftList.giftQuantity == 0}">--</th:block>
-                                            <th:block th:if="${giftList.giftQuantity > 0}"
-                                                      th:text="${giftList.giftQuantity}">
-                                                Gifts
-                                            </th:block>
-                                        </td>
-                                        <td>
-                                            <th:block th:if="${giftList.guestQuantity == 0}">--</th:block>
-                                            <th:block th:if="${giftList.guestQuantity > 0}"
-                                                      th:text="${giftList.guestQuantity}">
-                                                Guests
-                                            </th:block>
-                                        </td>
-                                        <td>
-                                            <a th:href="@{/admin/my-gift-lists/{giftListId} (giftListId = ${giftList.giftListId})}"
-                                               th:text="#{admin.gift-lists.table.body.action.view}">
-                                                View
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </th:block>
-                                </tbody>
-                            </table>
+                        <div class="col-md-2 col-sm-12">
+                            <a class="btn btn-primary w-100" th:href="${newGiftListUri}"
+                               th:text="#{admin.gift-lists.action.new-list}">
+                                New list
+                            </a>
                         </div>
                     </th:block>
-
                 </div>
+
+                <th:block th:if="${#lists.isEmpty(giftLists)}">
+                    <th:block th:insert="~{layout/admin/empty-space :: empty-space(
+                                emptySpaceTitle = #{admin.gift-lists.empty-space.title},
+                                emptySpaceDescription = #{admin.gift-lists.empty-space.description},
+                                emptySpaceActionText = #{admin.gift-lists.empty-space.action-text},
+                                emptySpaceActionUri = ${newGiftListUri},
+                    )}"/>
+                </th:block>
+
+
+                <th:block th:unless="${#lists.isEmpty(giftLists)}">
+                    <div class="row">
+                        <th:block th:each="giftList : ${giftLists}">
+                            <div class="col-lg-6 col-md-12 my-2" th:id="|gift-list-${giftList.giftListId}|">
+                                <a class="text-decoration-none text-reset"
+                                   th:href="@{/admin/my-gift-lists/{giftListId} (giftListId = ${giftList.giftListId})}">
+                                    <div class="card shadow">
+                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 class="m-0 font-weight-bold">
+                                                <th:block th:text="${giftList.name}">
+                                                    Name
+                                                </th:block>
+
+                                                <th:block th:if="${giftList.active}">
+                                                    <i class="fa-solid fa-xs fa-circle-check"
+                                                       th:title="#{admin.gift-lists.list.active}">
+                                                    </i>
+                                                </th:block>
+                                            </h6>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                <span class="font-weight-bold mr-1"
+                                                      th:text="|#{admin.gift-lists.list.gifts}:|">
+                                                    Gifts:
+                                                </span>
+                                                    <span th:text="${giftList.giftQuantity}">
+                                                    Gifts count
+                                                </span>
+                                                    <i class="fa-solid fa-gift"></i>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-12">
+                                                <span class="font-weight-bold mr-1"
+                                                      th:text="|#{admin.gift-lists.list.guests}:|">
+                                                    Guests:
+                                                </span>
+                                                    <span th:text="${giftList.guestQuantity}">
+                                                    Guests count
+                                                </span>
+                                                    <i class="fa-solid fa-users"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <span class="font-weight-bold"
+                                                          th:text="|#{admin.gift-lists.list.created-at}:|">
+                                                        Created at:
+                                                    </span>
+                                                    <span th:text="${#temporals.format(giftList.createdAt, dateTimeFormat)}">
+                                                        Creation date
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </th:block>
+                    </div>
+                </th:block>
             </div>
         </div>
     </th:block>
