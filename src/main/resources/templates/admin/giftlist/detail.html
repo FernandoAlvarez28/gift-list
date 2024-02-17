@@ -15,6 +15,15 @@
                 <th:block th:unless="${giftList.active}">
                     <i class="fa-solid fa-xs fa-circle-xmark" th:title="#{admin.gift-lists.detail.active.false}"></i>
                 </th:block>
+
+                <a class="ml-2"
+                   role="button"
+                   data-toggle="modal"
+                   data-target="#genericModal"
+                   th:attr="data-target-content-uri=@{/admin/my-gift-lists/{giftListId}/edit/fragment (giftListId = ${giftList.giftListId})}"
+                   th:title="#{admin.gift-lists.detail.action.edit}">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                </a>
             </h1>
 
             <div class="row">

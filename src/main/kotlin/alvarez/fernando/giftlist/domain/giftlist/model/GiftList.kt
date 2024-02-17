@@ -1,5 +1,6 @@
 package alvarez.fernando.giftlist.domain.giftlist.model
 
+import alvarez.fernando.giftlist.domain.giftlist.dto.GiftListEditRequest
 import alvarez.fernando.giftlist.domain.giftlist.dto.GiftListRequest
 import alvarez.fernando.giftlist.domain.user.dto.UserReference
 import jakarta.persistence.Entity
@@ -36,4 +37,8 @@ class GiftList(
     fun addGuest() = ++this.guestQuantity
 
     fun removeGuest() = --this.guestQuantity
+
+    fun edit(giftListEditRequest: GiftListEditRequest) {
+        this.name = giftListEditRequest.name.trim()
+    }
 }

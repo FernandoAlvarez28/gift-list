@@ -1,5 +1,6 @@
 package alvarez.fernando.giftlist.domain.giftlist.service
 
+import alvarez.fernando.giftlist.domain.giftlist.dto.GiftListEditRequest
 import alvarez.fernando.giftlist.domain.giftlist.dto.GiftListRequest
 import alvarez.fernando.giftlist.domain.giftlist.model.GiftList
 import alvarez.fernando.giftlist.domain.giftlist.repository.GiftListRepository
@@ -48,6 +49,14 @@ class GiftListService(
 
     fun removeGuest(giftList: GiftList) {
         giftList.removeGuest()
+        this.giftListRepository.save(giftList)
+    }
+
+    fun edit(
+        giftList: GiftList,
+        giftListEditRequest: GiftListEditRequest,
+    ) {
+        giftList.edit(giftListEditRequest = giftListEditRequest)
         this.giftListRepository.save(giftList)
     }
 }
