@@ -5,6 +5,7 @@ import org.apache.commons.text.StringSubstitutor
 class Urls {
     companion object {
         const val ROOT = "/"
+        const val ERROR = "/error"
 
         fun processParams(
             uri: String,

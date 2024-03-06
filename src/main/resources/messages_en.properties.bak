@@ -5,6 +5,8 @@ loading=Loading...
 formats.date=MM/dd/yyyy
 formats.date-time=MM/dd/yyyy - HH:mm
 
+error.title=Ops! An error has ocurred in the gift lists :/
+
 admin.login.title=My Gift Lists
 admin.login.email.placeholder=E-mail
 admin.login.password.placeholder=Password

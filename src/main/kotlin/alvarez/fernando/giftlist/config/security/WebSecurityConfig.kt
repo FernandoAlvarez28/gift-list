@@ -26,7 +26,7 @@ class WebSecurityConfig(
         return http
             .authorizeHttpRequests {
                 it.requestMatchers(Urls.ROOT, *Urls.Resources.PUBLIC).permitAll()
-                it.requestMatchers(Urls.Admin.LOGIN, Urls.Admin.FIRST_ACCESS).permitAll()
+                it.requestMatchers(Urls.Admin.LOGIN, Urls.Admin.FIRST_ACCESS, Urls.ERROR).permitAll()
                 it.requestMatchers(Urls.Admin.ANT_MATCHER).hasAuthority(Roles.ROLE_ADMIN.name)
                 it.requestMatchers(Urls.Guests.ANT_MATCHER).hasAuthority(Roles.ROLE_GUEST.name)
             }

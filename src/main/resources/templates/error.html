@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{error.title}">Title</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .image-container {
+            position: relative;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100vh;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .image-container p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+<div class="image-container">
+    <img id="catImage" th:src="'https://http.cat/' + ${httpStatus.value}"
+         th:alt="|${httpStatus.value} - ${httpStatus.reasonPhrase}|"/>
+
+    <p th:text="|${httpStatus.value} ${httpStatus.reasonPhrase}|">
+        418 I'm a tea pot
+    </p>
+</div>
+
+<script>
+    document.getElementById('catImage').onerror = function() {
+        this.style.display = 'none';
+        document.querySelector('.image-container p').style.display = 'block';
+    };
+</script>
+</body>
+</html>
