@@ -7,3 +7,4 @@ LICENSE
 gradle
 build
 docs
+docker-compose.yml
