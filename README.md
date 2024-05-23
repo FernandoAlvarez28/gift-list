@@ -40,8 +40,6 @@ You can deploy this application and use it to create and share gift lists for, f
 
 ## What it lacks
 - Payment system; its purpuse is only to share and manage gift lists with guests.
-- Working internationalization.
-  - It does have [English](./src/main/resources/messages_en.properties.bak) and [Portuguese](./src/main/resources/messages.properties) `message.properties` files, but it doesn't work inside a Docker container yet for some misterious reason. At the time being, the default language is Portuguese and the English one is disabled.
 - Image upload.
 - User creation. You can only create it in the first access or manually insert in the database.
 
