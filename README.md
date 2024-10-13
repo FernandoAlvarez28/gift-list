@@ -34,13 +34,14 @@ You can deploy this application and use it to create and share gift lists for, f
   - Add, edit and remove gifts.
   - Add, edit and remove guests.
     - Generate access link and/or QR code.
+  - Image upload.
+    - At the moment you can use [Cloudinary](https://cloudinary.com/), just need to use your credentials in the [application.properties](./src/main/resources/application.properties).
 - Guests can see the gifts and choose what will give.
   - They can also see if the gift already was chosen by someone else to prevent two or more guests giving the same gift.
 - Mobile responsive.
 
 ## What it lacks
 - Payment system; its purpuse is only to share and manage gift lists with guests.
-- Image upload.
 - User creation. You can only create it in the first access or manually insert in the database.
 
 ## How to run

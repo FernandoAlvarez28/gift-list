@@ -1,6 +1,8 @@
 <th:block xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <form th:action="${deleteGiftUri}"
-          method="POST">
+          method="POST"
+          enctype="multipart/form-data"
+    >
         <div class="modal-header">
             <h5 class="modal-title" th:text="#{admin.gift-lists.detail.gifts.modal.edit}">Edit gift</h5>
 
@@ -9,6 +11,26 @@
             </button>
         </div>
         <div class="modal-body">
+
+            <th:block th:if="${actualImage}">
+                <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem; max-height: 10rem;" th:src="${actualImage.url}">
+                </div>
+            </th:block>
+
+            <div class="form-group js-file-input-size-limit-div">
+                <input type="file"
+                       class="form-control form-control-user"
+                       accept="image/*"
+                       name="imageFile"
+                       th:attr="data-max-size = ${@environment.getProperty('spring.servlet.multipart.max-file-size')}"
+                >
+                <span class="js-file-input-size-exceeded-feedback text-danger d-none"
+                      th:text="#{admin.gift-lists.detail.gifts.modal.add.input.image.limit (${@environment.getProperty('spring.servlet.multipart.max-file-size')})}">
+                    Max file size exceeded feedback
+                </span>
+            </div>
+
             <div class="form-group">
                 <input type="text"
                        class="form-control form-control-user"

@@ -36,6 +36,8 @@ dependencies {
     implementation("org.flywaydb:flyway-core:9.22.3")
     implementation("org.apache.commons:commons-text:1.11.0")
     implementation("com.github.kenglxn.qrgen:javase:3.0.1")
+    implementation("com.cloudinary:cloudinary-http44:1.39.0")
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.5")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -39,6 +39,8 @@ class Urls {
             const val MY_GIFT_LIST_EDIT = "/admin/my-gift-lists/{giftListId}/edit"
             const val MY_GIFT_LIST_DETAIL_NEW_GIFT = "/admin/my-gift-lists/{giftListId}/add-gift"
             const val MY_GIFT_LIST_DETAIL_GIFT_DELETE = "/admin/my-gift-lists/{giftListId}/gifts/{giftId}/delete"
+            const val MY_GIFT_LIST_DETAIL_GIFT_DELETE_IMAGE =
+                "/admin/my-gift-lists/{giftListId}/gifts/{giftId}/delete-image"
             const val MY_GIFT_LIST_DETAIL_GIFT_EDIT = "/admin/my-gift-lists/{giftListId}/gifts/{giftId}/edit"
             const val MY_GIFT_LIST_DETAIL_NEW_GUEST = "/admin/my-gift-lists/{giftListId}/add-guest"
             const val MY_GIFT_LIST_DETAIL_GUEST_DELETE = "/admin/my-gift-lists/{giftListId}/guests/{guestId}/delete"
@@ -55,6 +57,8 @@ class Urls {
                     "/admin/my-gift-lists/{giftListId}/edit/fragment"
                 const val MY_GIFT_LIST_DETAIL_GIFT_DELETE_FRAGMENT =
                     "/admin/my-gift-lists/{giftListId}/gifts/{giftId}/delete/fragment"
+                const val MY_GIFT_LIST_DETAIL_GIFT_DELETE_IMAGE_FRAGMENT =
+                    "/admin/my-gift-lists/{giftListId}/gifts/{giftId}/delete-image/fragment"
                 const val MY_GIFT_LIST_DETAIL_GIFT_EDIT_FRAGMENT =
                     "/admin/my-gift-lists/{giftListId}/gifts/{giftId}/edit/fragment"
                 const val MY_GIFT_LIST_DETAIL_GUEST_DELETE_FRAGMENT =

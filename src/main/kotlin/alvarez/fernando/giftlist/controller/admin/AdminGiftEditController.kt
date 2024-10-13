@@ -9,6 +9,8 @@ import alvarez.fernando.giftlist.domain.gift.service.GiftService
 import alvarez.fernando.giftlist.domain.giftlist.exception.GiftListNotFoundException
 import alvarez.fernando.giftlist.domain.giftlist.model.GiftList
 import alvarez.fernando.giftlist.domain.giftlist.service.GiftListService
+import alvarez.fernando.giftlist.domain.image.model.Image
+import alvarez.fernando.giftlist.domain.image.service.ImageService
 import alvarez.fernando.giftlist.dto.GiftEditRequestDto
 import alvarez.fernando.giftlist.util.RedirectView
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -23,6 +25,7 @@ import java.util.UUID
 class AdminGiftEditController(
     private val giftListService: GiftListService,
     private val giftService: GiftService,
+    private val imageService: ImageService,
 ) {
     @GetMapping(Urls.Admin.Fragments.MY_GIFT_LIST_DETAIL_GIFT_EDIT_FRAGMENT)
     fun editGiftModalFragment(
@@ -37,9 +40,15 @@ class AdminGiftEditController(
                 giftId = giftId,
             )
 
+        var actualImage: Image? = null
+        if (gift.imageId != null) {
+            actualImage = this.imageService.findByIds(gift.imageId!!).orElse(null)
+        }
+
         return ModelAndView(Views.Admin.Fragments.GIFT_EDIT_FRAGMENT)
             .addObject("giftList", giftList)
             .addObject("gift", gift)
+            .addObject("actualImage", actualImage)
             .addObject(
                 "deleteGiftUri",
                 Urls.processParams(

@@ -17,6 +17,7 @@ class Views {
             companion object {
                 const val GIFT_LIST_EDIT_FRAGMENT = "admin/fragments/giftlist/edit"
                 const val GIFT_DELETE_FRAGMENT = "admin/fragments/gift/delete"
+                const val GIFT_DELETE_IMAGE_FRAGMENT = "admin/fragments/gift/delete-image"
                 const val GIFT_EDIT_FRAGMENT = "admin/fragments/gift/edit"
                 const val GUEST_DELETE_FRAGMENT = "admin/fragments/guest/delete"
                 const val GUEST_EDIT_FRAGMENT = "admin/fragments/guest/edit"

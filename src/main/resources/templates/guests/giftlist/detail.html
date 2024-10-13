@@ -22,7 +22,7 @@
 
             <th:block th:each="gift : ${gifts}">
                 <div class="col mb-5" th:id="|gift-${gift.giftId}|"
-                     th:with="chosenByGuest = ${chosenGiftsIds.contains(gift.giftId)}">
+                     th:with="chosenByGuest = ${chosenGiftsIds.contains(gift.giftId)}, image = ${imageIdMap.get(gift.imageId)}">
                     <div class="card h-100">
                         <th:block th:if="${gift.chosenByAGuest}">
                             <div class="badge text-white position-absolute"
@@ -34,8 +34,12 @@
                         </th:block>
 
 
-                        <!--/* TODO image */-->
-                        <div class="card-img-top" style="height: 50px; background-color: #f2f2f2; border-bottom: 1px solid #ccc;"></div>
+                        <th:block th:if="${image}">
+                            <img class="card-img-top" th:src="${image.url}" style="border-bottom: 1px solid #ccc; max-height: 15rem;">
+                        </th:block>
+                        <th:block th:unless="${image}">
+                            <div class="card-img-top" style="height: 50px; background-color: #f2f2f2; border-bottom: 1px solid #ccc;"></div>
+                        </th:block>
 
                         <!--/* Details */-->
                         <div class="card-body p-4">

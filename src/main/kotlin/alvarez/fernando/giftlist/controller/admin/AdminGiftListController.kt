@@ -6,6 +6,8 @@ import alvarez.fernando.giftlist.controller.Views
 import alvarez.fernando.giftlist.domain.gift.service.GiftService
 import alvarez.fernando.giftlist.domain.giftlist.service.GiftListService
 import alvarez.fernando.giftlist.domain.guest.service.GuestService
+import alvarez.fernando.giftlist.domain.image.model.Image
+import alvarez.fernando.giftlist.domain.image.service.ImageService
 import alvarez.fernando.giftlist.dto.GiftListRequestDto
 import alvarez.fernando.giftlist.dto.GiftRequestDto
 import alvarez.fernando.giftlist.dto.GuestRequestDto
@@ -23,6 +25,7 @@ class AdminGiftListController(
     private val giftListService: GiftListService,
     private val giftService: GiftService,
     private val guestService: GuestService,
+    private val imageService: ImageService,
 ) {
     @GetMapping(Urls.Admin.MY_GIFT_LISTS)
     fun giftListsPage(
@@ -49,9 +52,18 @@ class AdminGiftListController(
             return RedirectView(Urls.Admin.MY_GIFT_LISTS)
         }
 
+        val gifts = this.giftService.findAllByGiftList(giftListId)
+        val imageIdMap: Map<UUID, Image> =
+            this.imageService.findAllByIds(
+                imageIds =
+                    gifts.filter { gift -> gift.imageId != null }
+                        .map { gift -> gift.imageId!! },
+            ).associateBy { it.imageId }
+
         return ModelAndView(Views.Admin.GIFT_LIST_DETAIL)
             .addObject("giftList", giftList.get())
-            .addObject("gifts", this.giftService.findAllByGiftList(giftListId))
+            .addObject("gifts", gifts)
+            .addObject("imageIdMap", imageIdMap)
             .addObject("guests", this.guestService.findAllByGiftList(giftListId))
     }
 

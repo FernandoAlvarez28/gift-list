@@ -7,6 +7,7 @@ $(document).ready(function() {
                     const modalId = $this.attr('data-target');
                     $(`${modalId} .modal-content`).html(data)
                     initCopyToClipboard(`${modalId} .copy`)
+                    initFileSizeLimit(`${modalId} .js-file-input-size-limit-div`)
                 }
             });
         });

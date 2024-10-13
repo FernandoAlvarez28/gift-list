@@ -5,3 +5,7 @@
 .copy:hover {
     text-decoration: underline;
 }
+
+.img-fluid {
+    object-fit: contain;
+}

@@ -3,6 +3,7 @@ package alvarez.fernando.giftlist.domain.gift.model
 import alvarez.fernando.giftlist.domain.gift.dto.GiftEditRequest
 import alvarez.fernando.giftlist.domain.gift.dto.GiftRequest
 import alvarez.fernando.giftlist.domain.giftlist.model.GiftList
+import alvarez.fernando.giftlist.domain.image.model.Image
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
@@ -22,9 +23,9 @@ class Gift(
     val createdAt: LocalDateTime,
     @Column(name = "chosen_by_a_guest") var chosenByAGuest: Boolean,
     var deletedAt: LocalDateTime?,
-    // TODO save image somehow
+    var imageId: UUID?,
 ) {
-    constructor(giftRequest: GiftRequest, giftList: GiftList) : this(
+    constructor(giftRequest: GiftRequest, giftList: GiftList, image: Image?) : this(
         giftId = UUID.randomUUID(),
         giftListId = giftList.giftListId,
         name = giftRequest.name.trim(),
@@ -33,12 +34,26 @@ class Gift(
         createdAt = LocalDateTime.now(),
         deletedAt = null,
         chosenByAGuest = false,
+        imageId = image?.imageId,
     )
 
     fun edit(giftEditRequest: GiftEditRequest) {
         this.name = giftEditRequest.name.trim()
         this.description = StringUtils.trimToNull(giftEditRequest.description)
         this.requirement = StringUtils.trimToNull(giftEditRequest.requirement)
+    }
+
+    /**
+     * @return The previous image's ID, if existent.
+     */
+    fun changeImage(newImage: Image): UUID? {
+        val previousImageId = this.imageId
+        this.imageId = newImage.imageId
+        return previousImageId
+    }
+
+    fun removeImage() {
+        this.imageId = null
     }
 
     fun delete() {
